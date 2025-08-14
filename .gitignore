@@ -1,0 +1,33 @@
+# Build artifacts
+bin/
+obj/
+*/bin/
+*/obj/
+
+# VS / tooling
+.vs/
+*.user
+*.suo
+*.userprefs
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dotnet
+*.pidb
+
+# Secrets / local config
+appsettings.Development.json
+appsettings.Local.json
+
+# Output mappings
+output/
+script_out/
+
+# Coverage
+coverage/
+
