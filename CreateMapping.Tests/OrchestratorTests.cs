@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CreateMapping.AI;
 using CreateMapping.Mapping;
 using CreateMapping.Models;
+using CreateMapping.Services;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -28,14 +29,25 @@ public class OrchestratorTests
         new("totalamount","decimal", true,null,18,2)
     });
 
+    private static Mock<ISystemFieldClassifier> CreateMockSystemFieldClassifier()
+    {
+        var mock = new Mock<ISystemFieldClassifier>();
+        mock.Setup(s => s.ClassifyField(It.IsAny<string>(), It.IsAny<string>()))
+            .Returns((false, SystemFieldType.None));
+        mock.Setup(s => s.GetMappingPriority(It.IsAny<ColumnMetadata>()))
+            .Returns<ColumnMetadata>(col => col.IsSystemField ? 2 : 1);
+        return mock;
+    }
+
     [Fact]
     public async Task ReturnsEmptyWhenTargetEmpty()
     {
         var source = SampleSource();
         var target = new TableMetadata("DATAVERSE","empty", new List<ColumnMetadata>());
         var ai = new Mock<IAiMapper>(MockBehavior.Strict);
+        var systemClassifier = CreateMockSystemFieldClassifier();
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
-        var orchestrator = new MappingOrchestrator(ai.Object, logger);
+        var orchestrator = new MappingOrchestrator(ai.Object, systemClassifier.Object, logger);
         var result = await orchestrator.GenerateAsync(source, target, WeightsConfig.Default);
         Assert.Empty(result.Accepted);
         Assert.Equal(source.Columns.Count, result.UnresolvedSourceColumns.Count);
@@ -55,12 +67,13 @@ public class OrchestratorTests
         var ai = new Mock<IAiMapper>();
         ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
+        var systemClassifier = CreateMockSystemFieldClassifier();
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
-        var orchestrator = new MappingOrchestrator(ai.Object, logger);
+        var orchestrator = new MappingOrchestrator(ai.Object, systemClassifier.Object, logger);
         var weights = WeightsConfig.Default with { HighThreshold = 0.70, ReviewThreshold = 0.40, AiSimilarity = 1.0 };
         var result = await orchestrator.GenerateAsync(source, target, weights);
-        Assert.Equal(2, result.Accepted.Count); // 0.95 and 0.80
-        Assert.Single(result.NeedsReview); // 0.50
+        Assert.Equal(2, result.Accepted.Count); // 0.95 and 0.80 (after 1.05 boost for custom fields)
+        Assert.Single(result.NeedsReview); // 0.50 (after 1.05 boost = 0.525)
         Assert.Empty(result.UnresolvedSourceColumns);
     }
 
@@ -77,8 +90,9 @@ public class OrchestratorTests
         var ai = new Mock<IAiMapper>();
         ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
+        var systemClassifier = CreateMockSystemFieldClassifier();
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
-        var orchestrator = new MappingOrchestrator(ai.Object, logger);
+        var orchestrator = new MappingOrchestrator(ai.Object, systemClassifier.Object, logger);
         var weights = WeightsConfig.Default with { AiSimilarity = 1.0 };
         var result = await orchestrator.GenerateAsync(source, target, weights);
         Assert.Single(result.Accepted);
@@ -97,11 +111,12 @@ public class OrchestratorTests
         var ai = new Mock<IAiMapper>();
         ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
+        var systemClassifier = CreateMockSystemFieldClassifier();
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
-        var orchestrator = new MappingOrchestrator(ai.Object, logger);
+        var orchestrator = new MappingOrchestrator(ai.Object, systemClassifier.Object, logger);
         var weights = WeightsConfig.Default with { AiSimilarity = 0.5, HighThreshold = 0.7, ReviewThreshold = 0.4 };
         var result = await orchestrator.GenerateAsync(source, target, weights);
-        // raw 0.60 * 0.5 = 0.30 below review threshold so unresolved
+        // raw 0.60 * 0.5 * 1.05 (custom field boost) = 0.315 below review threshold so unresolved
         Assert.Empty(result.Accepted);
         Assert.Empty(result.NeedsReview);
         Assert.Contains("Amount", result.UnresolvedSourceColumns);
@@ -119,10 +134,12 @@ public class OrchestratorTests
         var ai = new Mock<IAiMapper>();
         ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
+        var systemClassifier = CreateMockSystemFieldClassifier();
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
-        var orchestrator = new MappingOrchestrator(ai.Object, logger);
+        var orchestrator = new MappingOrchestrator(ai.Object, systemClassifier.Object, logger);
         var weights = WeightsConfig.Default with { AiSimilarity = 1.0, HighThreshold = 0.7, ReviewThreshold = 0.4 };
         var result = await orchestrator.GenerateAsync(source, target, weights);
+        // 0.35 * 1.0 * 1.05 = 0.3675 below review threshold
         Assert.Empty(result.Accepted);
         Assert.Empty(result.NeedsReview);
         Assert.Contains("Amount", result.UnresolvedSourceColumns);

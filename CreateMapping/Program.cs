@@ -31,6 +31,7 @@ root.SetHandler(async (sqlTable, dvTable, outputDir, sqlScriptPath) =>
 	services.AddLogging(b => b.AddSimpleConsole(o => { o.SingleLine = true; o.TimestampFormat = "HH:mm:ss "; }).SetMinimumLevel(LogLevel.Information));
 	services.AddSingleton<ISqlIntrospector, SqlIntrospector>();
 	services.AddSingleton<ISqlScriptParser, SqlScriptParser>();
+	services.AddSingleton<ISystemFieldClassifier, SystemFieldClassifier>();
 	services.AddSingleton<IDataverseMetadataProvider, DataverseMetadataProvider>();
 	// MappingEngine removed (AI-only mode per user request)
 	services.AddHttpClient("azure-openai");

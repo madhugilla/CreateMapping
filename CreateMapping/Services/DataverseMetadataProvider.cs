@@ -11,10 +11,12 @@ public sealed class DataverseMetadataProvider : IDataverseMetadataProvider
 {
     private readonly ServiceClient _client;
     private readonly ILogger<DataverseMetadataProvider> _logger;
+    private readonly ISystemFieldClassifier _systemFieldClassifier;
 
-    public DataverseMetadataProvider(IConfiguration config, ILogger<DataverseMetadataProvider> logger)
+    public DataverseMetadataProvider(IConfiguration config, ILogger<DataverseMetadataProvider> logger, ISystemFieldClassifier systemFieldClassifier)
     {
         _logger = logger;
+        _systemFieldClassifier = systemFieldClassifier;
         var url = config["Dataverse:Url"];
         if (string.IsNullOrWhiteSpace(url))
         {
@@ -76,9 +78,14 @@ public sealed class DataverseMetadataProvider : IDataverseMetadataProvider
         {
             optionValues = e.OptionSet.Options.Select(o => o.Label?.UserLocalizedLabel?.Label ?? o.Value?.ToString() ?? string.Empty).Where(v => !string.IsNullOrEmpty(v)).ToList();
         }
+
+        var logicalName = attr.LogicalName ?? string.Empty;
+        var dataType = attr.AttributeTypeName?.Value ?? attr.AttributeType?.ToString() ?? "unknown";
+        var (isSystemField, systemFieldType) = _systemFieldClassifier.ClassifyField(logicalName, dataType);
+
         return new ColumnMetadata(
-            Name: attr.LogicalName ?? string.Empty,
-            DataType: attr.AttributeTypeName?.Value ?? attr.AttributeType?.ToString() ?? "unknown",
+            Name: logicalName,
+            DataType: dataType,
             IsNullable: !required,
             Length: maxLength,
             Precision: (attr as DecimalAttributeMetadata)?.Precision ?? (attr as MoneyAttributeMetadata)?.Precision ?? null,
@@ -89,7 +96,9 @@ public sealed class DataverseMetadataProvider : IDataverseMetadataProvider
             IsPrimaryId: entity.PrimaryIdAttribute == attr.LogicalName,
             IsPrimaryName: entity.PrimaryNameAttribute == attr.LogicalName,
             IsRequired: required,
-            OptionSetValues: optionValues
+            OptionSetValues: optionValues,
+            IsSystemField: isSystemField,
+            SystemFieldType: systemFieldType
         );
     }
 }

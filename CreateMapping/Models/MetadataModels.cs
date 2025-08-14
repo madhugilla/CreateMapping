@@ -13,8 +13,29 @@ public sealed record ColumnMetadata(
     bool IsPrimaryId = false,
     bool IsPrimaryName = false,
     bool IsRequired = false,
-    IReadOnlyList<string>? OptionSetValues = null
+    IReadOnlyList<string>? OptionSetValues = null,
+    bool IsSystemField = false,
+    SystemFieldType SystemFieldType = SystemFieldType.None
 );
+
+public enum SystemFieldType
+{
+    None,
+    CreatedOn,
+    CreatedBy,
+    ModifiedOn,
+    ModifiedBy,
+    Owner,
+    BusinessUnit,
+    State,
+    Status,
+    Version,
+    ImportSequence,
+    OverriddenCreatedOn,
+    TimeZoneRule,
+    UtcConversionTimeZone,
+    Other
+}
 
 public sealed record TableMetadata(
     string SourceSystem, // "SQL" or "DATAVERSE"
