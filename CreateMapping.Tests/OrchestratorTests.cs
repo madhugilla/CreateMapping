@@ -39,6 +39,55 @@ public class OrchestratorTests
         var result = await orchestrator.GenerateAsync(source, target, WeightsConfig.Default);
         Assert.Empty(result.Accepted);
         Assert.Equal(source.Columns.Count, result.UnresolvedSourceColumns.Count);
+        // Verify AI mapper was not called when target is empty
+        ai.Verify(a => a.SuggestMappingsAsync(It.IsAny<TableMetadata>(), It.IsAny<TableMetadata>(), 
+            It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task CallsAiMapperWithEmptyListForEmptySource()
+    {
+        var source = new TableMetadata("SQL", "empty", new List<ColumnMetadata>());
+        var target = SampleTarget();
+        var ai = new Mock<IAiMapper>();
+        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.Is<IReadOnlyCollection<string>>(cols => cols.Count == 0), 
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(Array.Empty<AiMappingSuggestion>());
+        var logger = Mock.Of<ILogger<MappingOrchestrator>>();
+        var orchestrator = new MappingOrchestrator(ai.Object, logger);
+        var result = await orchestrator.GenerateAsync(source, target, WeightsConfig.Default);
+        Assert.Empty(result.Accepted);
+        Assert.Empty(result.UnresolvedSourceColumns);
+        // Verify the mock was called with empty collection
+        ai.Verify(a => a.SuggestMappingsAsync(source, target, It.Is<IReadOnlyCollection<string>>(cols => cols.Count == 0), 
+            It.IsAny<CancellationToken>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task VerifiesSourceColumnNamesPassedToAiMapper()
+    {
+        var source = SampleSource();
+        var target = SampleTarget();
+        var suggestions = new List<AiMappingSuggestion>
+        {
+            new("Id","sampleid",0.95,null,"Primary key match")
+        };
+        var ai = new Mock<IAiMapper>();
+        var capturedColumnNames = new List<string>();
+        ai.Setup(a => a.SuggestMappingsAsync(It.IsAny<TableMetadata>(), It.IsAny<TableMetadata>(), 
+                It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
+            .Callback<TableMetadata, TableMetadata, IReadOnlyCollection<string>, CancellationToken>(
+                (src, tgt, cols, ct) => capturedColumnNames.AddRange(cols))
+            .ReturnsAsync(suggestions);
+        var logger = Mock.Of<ILogger<MappingOrchestrator>>();
+        var orchestrator = new MappingOrchestrator(ai.Object, logger);
+        var result = await orchestrator.GenerateAsync(source, target, WeightsConfig.Default);
+        
+        // Verify that all source column names were passed to the AI mapper
+        Assert.Equal(3, capturedColumnNames.Count);
+        Assert.Contains("Id", capturedColumnNames);
+        Assert.Contains("Name", capturedColumnNames);
+        Assert.Contains("Amount", capturedColumnNames);
     }
 
     [Fact]
@@ -53,7 +102,9 @@ public class OrchestratorTests
             new("Amount","totalamount",0.50,null,"Amount mapping")
         };
         var ai = new Mock<IAiMapper>();
-        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
+        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.Is<IReadOnlyCollection<string>>(cols => 
+                cols.Count == 3 && cols.Contains("Id") && cols.Contains("Name") && cols.Contains("Amount")), 
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
         var orchestrator = new MappingOrchestrator(ai.Object, logger);
@@ -75,7 +126,9 @@ public class OrchestratorTests
             new("Name","sampleid",0.85,null,null) // duplicate target should be ignored
         };
         var ai = new Mock<IAiMapper>();
-        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
+        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.Is<IReadOnlyCollection<string>>(cols => 
+                cols.Count == 3 && cols.Contains("Id") && cols.Contains("Name") && cols.Contains("Amount")), 
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
         var orchestrator = new MappingOrchestrator(ai.Object, logger);
@@ -95,7 +148,9 @@ public class OrchestratorTests
             new("Amount","totalamount",0.60,null,null)
         };
         var ai = new Mock<IAiMapper>();
-        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
+        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.Is<IReadOnlyCollection<string>>(cols => 
+                cols.Count == 3 && cols.Contains("Id") && cols.Contains("Name") && cols.Contains("Amount")), 
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
         var orchestrator = new MappingOrchestrator(ai.Object, logger);
@@ -117,7 +172,9 @@ public class OrchestratorTests
             new("Amount","totalamount",0.35,null,null)
         };
         var ai = new Mock<IAiMapper>();
-        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.IsAny<IReadOnlyCollection<string>>(), It.IsAny<CancellationToken>()))
+        ai.Setup(a => a.SuggestMappingsAsync(source, target, It.Is<IReadOnlyCollection<string>>(cols => 
+                cols.Count == 3 && cols.Contains("Id") && cols.Contains("Name") && cols.Contains("Amount")), 
+                It.IsAny<CancellationToken>()))
             .ReturnsAsync(suggestions);
         var logger = Mock.Of<ILogger<MappingOrchestrator>>();
         var orchestrator = new MappingOrchestrator(ai.Object, logger);

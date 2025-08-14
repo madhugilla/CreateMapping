@@ -74,4 +74,27 @@ public class AzureOpenAiMapperParsingTests
         var result = await mapper.SuggestMappingsAsync(src, tgt, Array.Empty<string>());
         Assert.Empty(result);
     }
+
+    [Fact]
+    public async Task HandlesRequestedSourceColumnsFilter()
+    {
+        var mapper = CreateMapper("[{\"source\":\"Name\",\"target\":\"name\",\"confidence\":0.9},{\"source\":\"Id\",\"target\":\"id\",\"confidence\":0.8}]");
+        var src = new TableMetadata("SQL","S", new[]{ 
+            new ColumnMetadata("Id","int", false,null,null,null),
+            new ColumnMetadata("Name","nvarchar", true,100,null,null) 
+        });
+        var tgt = new TableMetadata("DATAVERSE","T", new[]{ 
+            new ColumnMetadata("id","int", false,null,null,null),
+            new ColumnMetadata("name","string", true,100,null,null) 
+        });
+        
+        // Request mapping for only the "Name" column
+        var result = await mapper.SuggestMappingsAsync(src, tgt, new[] { "Name" });
+        
+        // The AI response includes both mappings, but the actual filtering happens in the prompt creation
+        // This test verifies that the method can be called with specific requested columns
+        Assert.Equal(2, result.Count); // Both suggestions returned since the mock response includes both
+        Assert.Contains(result, r => r.SourceColumn == "Name");
+        Assert.Contains(result, r => r.SourceColumn == "Id");
+    }
 }

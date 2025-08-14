@@ -30,8 +30,9 @@ public sealed class MappingOrchestrator : IMappingOrchestrator
         IReadOnlyList<AiMappingSuggestion> aiSuggestions = Array.Empty<AiMappingSuggestion>();
         try
         {
+            var sourceColumnNames = source.Columns.Select(c => c.Name).ToList();
             _logger.LogInformation("Requesting AI mapping suggestions (source cols: {SourceCount}, target cols: {TargetCount})", source.Columns.Count, target.Columns.Count);
-            aiSuggestions = await _ai.SuggestMappingsAsync(source, target, Array.Empty<string>(), ct);
+            aiSuggestions = await _ai.SuggestMappingsAsync(source, target, sourceColumnNames, ct);
         }
         catch (Exception ex)
         {
