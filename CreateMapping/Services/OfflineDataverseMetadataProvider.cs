@@ -17,15 +17,22 @@ public sealed class OfflineDataverseMetadataProvider : IDataverseMetadataProvide
     private readonly string _filePath;
     private List<(string Table, ColumnMetadata Column)>? _cache;
     private bool _hasNoTableColumn;
+    private readonly string _includePrefix; // e.g. m360_
 
     public OfflineDataverseMetadataProvider(ILogger<OfflineDataverseMetadataProvider> logger, IConfiguration config)
     {
         _logger = logger;
         _filePath = Environment.GetEnvironmentVariable("CM_DATAVERSE_FILE") ?? config["Dataverse:File"] ?? string.Empty;
+        _includePrefix = Environment.GetEnvironmentVariable("CM_DV_PREFIX")
+            ?? config["Dataverse:IncludePrefix"]
+            ?? "m360_"; // default requirement
+        if (string.Equals(_includePrefix, "*", StringComparison.Ordinal))
+            _includePrefix = string.Empty; // treat * as no filtering
         if (string.IsNullOrWhiteSpace(_filePath))
         {
             _logger.LogWarning("Offline provider initialized without a file path; will return empty metadata.");
         }
+        _logger.LogInformation("Dataverse column prefix filter: {PrefixDisplay}", string.IsNullOrEmpty(_includePrefix) ? "<none> (all columns)" : _includePrefix);
     }
 
     public Task<TableMetadata> GetTableMetadataAsync(string logicalName, CancellationToken ct = default)
@@ -38,10 +45,14 @@ public sealed class OfflineDataverseMetadataProvider : IDataverseMetadataProvide
 
         EnsureLoaded();
 
-        var cols = _cache!
+        var colsQuery = _cache!
             .Where(c => string.Equals(c.Table, logicalName, StringComparison.OrdinalIgnoreCase) || _hasNoTableColumn)
-            .Select(c => c.Column)
-            .ToList();
+            .Select(c => c.Column);
+        if (!string.IsNullOrEmpty(_includePrefix))
+        {
+            colsQuery = colsQuery.Where(col => col.Name.StartsWith(_includePrefix, StringComparison.OrdinalIgnoreCase));
+        }
+        var cols = colsQuery.ToList();
         return Task.FromResult(new TableMetadata("DATAVERSE_OFFLINE", logicalName, cols));
     }
 

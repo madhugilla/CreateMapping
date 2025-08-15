@@ -65,6 +65,7 @@ Options:
 | `--sql-script` | Yes | Path to a file with exactly one `CREATE TABLE` definition. |
 | `--dataverse-file` | Yes* | Path to Dataverse metadata CSV (*optional if `CM_DATAVERSE_FILE` env var or `Dataverse:File` configured). |
 | `--output` | No | Output directory (default `output`). |
+| `--dataverse-prefix` | No | Include only Dataverse columns whose logical name starts with this prefix (default `m360_`). Use `*` or empty string to include all columns. |
 
 ### Example
 
@@ -79,6 +80,18 @@ You can also set an environment variable instead of the option:
 ```powershell
 $Env:CM_DATAVERSE_FILE = "docs/m360_case_csv.csv"
 dotnet run -- dbo.Customer account --sql-script sample_table.sql
+```
+
+Filter columns (only those starting with `m360_` – this is already the default):
+
+```powershell
+dotnet run -- dbo.Customer m360_case --sql-script docs/CaseMigrant.sql --dataverse-file docs/m360_case_csv.csv --dataverse-prefix m360_
+```
+
+Include all columns (override default):
+
+```powershell
+dotnet run -- dbo.Customer m360_case --sql-script docs/CaseMigrant.sql --dataverse-file docs/m360_case_csv.csv --dataverse-prefix *
 ```
 
 Precedence order for offline file path:

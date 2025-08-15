@@ -32,6 +32,7 @@ public class Program
 		var sqlScriptOpt = new Option<string>("--sql-script", description: "Path to CREATE TABLE script (offline SQL schema)") { IsRequired = true };
 		var dvFileOpt = new Option<string>("--dataverse-file", description: "Path to Dataverse metadata CSV") { IsRequired = true };
 		var outputOpt = new Option<string>("--output", () => "output", "Output directory for mapping files");
+		var dvPrefixOpt = new Option<string>("--dataverse-prefix", () => "m360_", "Filter Dataverse columns by logical name prefix (use * for all)");
 		var dvTableArg = new Argument<string>("dataverse-table", description: "Dataverse logical table name (must match rows in CSV if multi-entity file)");
 		var sqlTableArg = new Argument<string>("sql-table", description: "Logical SQL table name (used for naming only)");
 		root.AddArgument(sqlTableArg);
@@ -39,10 +40,13 @@ public class Program
 		root.AddOption(sqlScriptOpt);
 		root.AddOption(dvFileOpt);
 		root.AddOption(outputOpt);
+		root.AddOption(dvPrefixOpt);
 
-		root.SetHandler<string, string, string, string, string>(async (sqlTable, dvTable, outputDir, script, dvFile) =>
+		root.SetHandler<string, string, string, string, string, string>(async (sqlTable, dvTable, outputDir, script, dvFile, dvPrefix) =>
 		{
 			Environment.SetEnvironmentVariable("CM_DATAVERSE_FILE", dvFile);
+			if (!string.IsNullOrWhiteSpace(dvPrefix))
+				Environment.SetEnvironmentVariable("CM_DV_PREFIX", dvPrefix);
 			var app = provider.GetRequiredService<MappingApp>();
 			try
 			{
@@ -53,7 +57,7 @@ public class Program
 				provider.GetRequiredService<ILoggerFactory>().CreateLogger("Main").LogError(ex, "Execution failed");
 				Environment.ExitCode = 1;
 			}
-		}, sqlTableArg, dvTableArg, outputOpt, sqlScriptOpt, dvFileOpt);
+		}, sqlTableArg, dvTableArg, outputOpt, sqlScriptOpt, dvFileOpt, dvPrefixOpt);
 		return root;
 	}
 

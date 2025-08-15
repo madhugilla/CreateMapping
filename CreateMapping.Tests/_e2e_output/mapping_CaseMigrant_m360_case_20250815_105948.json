@@ -1,7 +1,7 @@
 {
   "Source": {
     "SourceSystem": "SQL_SCRIPT",
-    "Name": "dbo.MigrantCase",
+    "Name": "CaseMigrant",
     "Columns": [
       {
         "Name": "MigrantCaseID",
@@ -2557,235 +2557,44 @@
       }
     ]
   },
-  "Accepted": [
-    {
-      "SourceColumn": "MigrantCaseID",
-      "TargetColumn": "m360_caseid",
-      "Confidence": 0.9450000000000001,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Exact name match with compatible type (Uniqueidentifier)."
-    },
-    {
-      "SourceColumn": "CaseGUID",
-      "TargetColumn": "m360_externalcasenumber",
-      "Confidence": 0.8400000000000001,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Strong semantic match; case identifier is often stored as GUID/number."
-    },
-    {
-      "SourceColumn": "CaseNo",
-      "TargetColumn": "m360_primaryreferencenumber",
-      "Confidence": 0.8400000000000001,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Semantic match; \u0027CaseNo\u0027 refers to a reference number."
-    },
-    {
-      "SourceColumn": "Category",
-      "TargetColumn": "m360_category",
-      "Confidence": 0.8400000000000001,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Strong semantic match with expected attribute."
-    },
-    {
-      "SourceColumn": "ReferralDate",
-      "TargetColumn": "m360_referraldate",
-      "Confidence": 0.8400000000000001,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Strong semantic match with the date format."
-    },
-    {
-      "SourceColumn": "xMFID",
-      "TargetColumn": "m360_xmifid",
-      "Confidence": 0.8400000000000001,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good mapping for unique identifier."
-    },
-    {
-      "SourceColumn": "RegistrationDate",
-      "TargetColumn": "m360_created_on_date",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good business logic match; date represents when a case is created."
-    },
-    {
-      "SourceColumn": "SendingMission",
-      "TargetColumn": "m360_managing_mission",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good logical association; SendingMission relates to managing missions."
-    },
-    {
-      "SourceColumn": "SecondarySource",
-      "TargetColumn": "m360_secondary_source",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good logical mapping; secondary sources are relevant."
-    },
-    {
-      "SourceColumn": "SecondaryReferenceNo",
-      "TargetColumn": "m360_secondaryreferencenumber",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good business logic match; refers to a secondary reference."
-    },
-    {
-      "SourceColumn": "ReferralAgency",
-      "TargetColumn": "m360_referral_entity",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good match; both refer to agency information."
-    },
-    {
-      "SourceColumn": "ReferralEntity",
-      "TargetColumn": "m360_referralagencyid",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good mapping; entity refers to referral agency."
-    },
-    {
-      "SourceColumn": "Location",
-      "TargetColumn": "m360_caselocation",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good business logic match; directly related to location."
-    },
-    {
-      "SourceColumn": "LocationCountry",
-      "TargetColumn": "m360_caselocationcountryid",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good mapping; country information aligns with location."
-    },
-    {
-      "SourceColumn": "PromissoryNoteCategory",
-      "TargetColumn": "m360_promisory_note_category",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Business logic match; aligns with category types."
-    },
-    {
-      "SourceColumn": "FinalDestination",
-      "TargetColumn": "m360_final_destination",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Strong match to final destination attributes."
-    },
-    {
-      "SourceColumn": "EarliestTravelDate",
-      "TargetColumn": "m360_earliest_arrival_date",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good mapping as both refer to relevant travel dates."
-    },
-    {
-      "SourceColumn": "GlobalCaseStatus",
-      "TargetColumn": "m360_case_status",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good logic mapping as status indicators match."
-    },
-    {
-      "SourceColumn": "ChangeStatusReason",
-      "TargetColumn": "m360_change_status_reason",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good mapping of status reason to change event."
-    },
-    {
-      "SourceColumn": "ChangeStatusOtherReason",
-      "TargetColumn": "m360_change_status_other_reason",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Good mapping of additional status reasons."
-    },
-    {
-      "SourceColumn": "IsRevoke",
-      "TargetColumn": "m360_is_revoke",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Boolean field indicating the revocation."
-    },
-    {
-      "SourceColumn": "ValidFrom",
-      "TargetColumn": "m360_valid_from",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Excellent match for valid date indicators."
-    },
-    {
-      "SourceColumn": "ValidTo",
-      "TargetColumn": "m360_valid_to",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Excellent match for valid date indicators."
-    },
-    {
-      "SourceColumn": "CaseWorker",
-      "TargetColumn": "m360_case_worker",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Case worker corresponds directly to the worker attribute."
-    },
-    {
-      "SourceColumn": "IsUnaccompaniedMinor",
-      "TargetColumn": "m360_is_unaccompanied_minor",
-      "Confidence": 0.735,
-      "MatchType": "AI-Custom",
-      "Transformation": "",
-      "Rationale": "Direct mapping from logical attributes."
-    },
-    {
-      "SourceColumn": "LastDateModified",
-      "TargetColumn": "modifiedon",
-      "Confidence": 0.76,
-      "MatchType": "AI-System-ModifiedOn",
-      "Transformation": "",
-      "Rationale": "Strong match with last modification timestamp."
-    }
-  ],
-  "NeedsReview": [
-    {
-      "SourceColumn": "CreatedBy",
-      "TargetColumn": "createdby",
-      "Confidence": 0.57,
-      "MatchType": "AI-System-CreatedBy",
-      "Transformation": "",
-      "Rationale": "Determined by pattern; refers to the user who created the entry."
-    }
-  ],
+  "Accepted": [],
+  "NeedsReview": [],
   "UnresolvedSourceColumns": [
+    "MigrantCaseID",
+    "CaseGUID",
+    "CaseNo",
+    "RegistrationDate",
+    "SendingMission",
     "PrimarySource",
     "PrimaryRefNo",
     "DestinationCountry",
+    "Category",
+    "SecondarySource",
+    "SecondaryReferenceNo",
+    "ReferralDate",
+    "ReferralAgency",
+    "ReferralEntity",
+    "Location",
+    "LocationCountry",
     "BasedCity",
     "BasedCountry",
+    "PromissoryNoteCategory",
+    "FinalDestination",
+    "EarliestTravelDate",
     "LatestTravelDate",
+    "GlobalCaseStatus",
     "Remarks",
+    "ChangeStatusReason",
+    "ChangeStatusOtherReason",
+    "CreatedBy",
     "ManagingMission",
+    "LastDateModified",
+    "IsRevoke",
+    "ValidFrom",
+    "ValidTo",
+    "CaseWorker",
+    "IsUnaccompaniedMinor",
+    "xMFID",
     "FinalDestinationType",
     "ReferralAgencyContact",
     "trigger_timestamp",
@@ -2793,6 +2602,7 @@
     "rowguid"
   ],
   "UnusedTargetColumns": [
+    "createdby",
     "createdbyname",
     "createdbyyominame",
     "createdon",
@@ -2800,14 +2610,26 @@
     "createdonbehalfbyname",
     "createdonbehalfbyyominame",
     "importsequencenumber",
+    "m360_case_status",
     "m360_case_statusname",
+    "m360_case_worker",
+    "m360_caseid",
+    "m360_caselocation",
+    "m360_caselocationcountryid",
     "m360_caselocationcountryidname",
     "m360_casemembershipid",
     "m360_casemembershipidname",
+    "m360_category",
     "m360_categoryname",
+    "m360_change_status_other_reason",
+    "m360_change_status_reason",
     "m360_change_status_reasonname",
+    "m360_created_on_date",
+    "m360_earliest_arrival_date",
     "m360_external_case_type",
     "m360_external_case_typename",
+    "m360_externalcasenumber",
+    "m360_final_destination",
     "m360_final_destination_type",
     "m360_final_destination_typename",
     "m360_final_destinationname",
@@ -2816,31 +2638,45 @@
     "m360_internal_external_case",
     "m360_internal_external_casename",
     "m360_internalcasenumber",
+    "m360_is_revoke",
     "m360_is_revokename",
+    "m360_is_unaccompanied_minor",
     "m360_is_unaccompanied_minorname",
     "m360_last_date_modified",
+    "m360_managing_mission",
     "m360_managing_missionname",
     "m360_must_travel_by_date",
     "m360_name",
+    "m360_primaryreferencenumber",
     "m360_program",
     "m360_programname",
+    "m360_promisory_note_category",
     "m360_promisory_note_categoryname",
+    "m360_referral_entity",
     "m360_referral_entityname",
+    "m360_referralagencyid",
     "m360_referralagencyidname",
+    "m360_referraldate",
     "m360_reintegration_mission",
     "m360_reintegration_missionname",
     "m360_rsc",
     "m360_rsc_expedite",
     "m360_rsc_expeditename",
+    "m360_secondary_source",
     "m360_secondary_sourcename",
+    "m360_secondaryreferencenumber",
     "m360_start_case_status",
     "m360_start_travel_status",
     "m360_unhcrcasenumber",
     "m360_urgency",
     "m360_urgencyname",
+    "m360_valid_from",
+    "m360_valid_to",
+    "m360_xmifid",
     "modifiedby",
     "modifiedbyname",
     "modifiedbyyominame",
+    "modifiedon",
     "modifiedonbehalfby",
     "modifiedonbehalfbyname",
     "modifiedonbehalfbyyominame",
@@ -2861,7 +2697,7 @@
     "utcconversiontimezonecode",
     "versionnumber"
   ],
-  "GeneratedAtUtc": "2025-08-15T10:51:29.4908368Z",
+  "GeneratedAtUtc": "2025-08-15T10:59:48.7267366Z",
   "Weights": {
     "ExactName": 0.5,
     "CaseInsensitive": 0.45,
