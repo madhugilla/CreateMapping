@@ -24,21 +24,49 @@ public sealed class DataverseMetadataProvider : IDataverseMetadataProvider
             _client = null!;
             return;
         }
-        // Username/password per user request (NOT recommended long term). Expect env variables for security.
+
+        var authMode = (config["Dataverse:AuthMode"] ?? "Password").Trim(); // Password (ROPC) default
         var user = config["Dataverse:Username"];
         var pwd = config["Dataverse:Password"];
         if (string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(pwd))
         {
             _logger.LogWarning("Dataverse username/password not configured; returning empty metadata.");
-            _client = null!; // Will short circuit in method.
+            _client = null!;
             return;
         }
 
-        // Connection string form: AuthType=OAuth;Username=...;Password=...;Url=...;AppId=...;RedirectUri=...; but for simple user/pwd legacy we can try simpler
-        // Using simplified connection string relying on username/password (must have proper config of TLS & security). For production should use OAuth/ClientSecret.
-        var cs = $"AuthType=OAuth;Username={user};Password={pwd};Url={url};AppId=51f81489-12ee-4a9e-aaae-a2591f45987d;RedirectUri=app://58145B91-0C36-4500-8554-080854F2AC97;LoginPrompt=Never";
+        if (!string.Equals(authMode, "Password", StringComparison.OrdinalIgnoreCase))
+        {
+            _logger.LogWarning("Unsupported Dataverse:AuthMode '{AuthMode}' specified. Falling back to Password (ROPC) flow.", authMode);
+        }
+
+        // Configurable OAuth parameters
+        var clientId = config["Dataverse:ClientId"] ?? "51f81489-12ee-4a9e-aaae-a2591f45987d"; // Public client id (first-party) if not provided
+        var redirect = config["Dataverse:RedirectUri"] ?? "app://58145B91-0C36-4500-8554-080854F2AC97";
+        var tenantId = config["Dataverse:TenantId"]; // optional
+
+        // Build connection string for ServiceClient using ROPC. NOTE: ROPC is not recommended for production; prefer interactive or client secret/certificate flows.
+        // Authority is optional; ServiceClient infers from URL if not provided.
+        var csParts = new List<string>
+        {
+            "AuthType=OAuth",
+            $"Username={user}",
+            $"Password={EscapeSemiColons(pwd)}",
+            $"Url={url}",
+            $"AppId={clientId}",
+            $"RedirectUri={redirect}",
+            "LoginPrompt=Never"
+        };
+        if (!string.IsNullOrWhiteSpace(tenantId))
+        {
+            csParts.Add($"Authority=https://login.microsoftonline.com/{tenantId}");
+        }
+        var cs = string.Join(';', csParts);
+        _logger.LogInformation("Initializing Dataverse ServiceClient using OAuth password flow (AuthMode=Password). ClientId={ClientId} AuthorityTenantSet={TenantSet}", clientId, !string.IsNullOrWhiteSpace(tenantId));
         _client = new ServiceClient(cs);
     }
+
+    private static string EscapeSemiColons(string input) => input?.Replace(";", ";;") ?? string.Empty;
 
     public async Task<TableMetadata> GetTableMetadataAsync(string logicalName, CancellationToken ct = default)
     {
