@@ -9,10 +9,18 @@ Generates a proposed mapping between a SQL Server table and a Microsoft Datavers
 
 ## Configure
 
-Set environment variables (recommended) or `appsettings.json` (avoid committing secrets):
+Set environment variables (recommended) or `appsettings.json` (avoid committing secrets). The tool currently reads:
+
+- `Ai:*` for standard chat completion model (uses Temperature)
+- `Ai_Reasoning:*` placeholder for reasoning models (o1-preview / o1-mini) – not yet wired into the orchestrator; kept for forward compatibility (no Temperature setting used)
+- SQL connection via either `ConnectionStrings:Sql` OR `Sql:ConnectionString` (the code calls `GetConnectionString("Sql")` first, then `Sql:ConnectionString`)
+
+Example (PowerShell syntax shown for brevity; adapt to your shell):
 
 ```bash
-set SQL__ConnectionString="Server=.;Database=YourDb;Trusted_Connection=True;Encrypt=True;"
+set ConnectionStrings__Sql="Server=.;Database=YourDb;Trusted_Connection=True;Encrypt=True;"  # Preferred key
+# or (fallback key)
+set Sql__ConnectionString="Server=.;Database=YourDb;Trusted_Connection=True;Encrypt=True;"
 set Dataverse__Url="https://yourorg.crm.dynamics.com"
 set Dataverse__Username="someone@tenant.onmicrosoft.com"
 set Dataverse__Password="YourStrongPassword"
@@ -25,6 +33,11 @@ set Ai__Deployment="<your-deployment-name>"  # e.g. gpt-4o or gpt-4o-mini
 set Ai__Temperature=0.2
 set Ai__RetryCount=2          # retries for transient errors (429/5xx)
 set Ai__LogRaw=false          # set true to log raw JSON responses (debug)
+
+# (Optional future reasoning model section – not active yet)
+set Ai_Reasoning__Enabled=false
+set Ai_Reasoning__Deployment="o1-preview"
+set Ai_Reasoning__RetryCount=2
 ```
 
 (`:` replaced by `__` in environment variable names for hierarchical keys.)
@@ -46,6 +59,8 @@ Options:
 
 - `--output` Directory for generated files (default: `output`). Will be created if missing.
 - `--sql-script` Path to a `.sql` file containing a single `CREATE TABLE` statement. When supplied, the tool parses the script instead of connecting to SQL Server.
+- `--check-dataverse` Only test Dataverse connectivity & list entity columns (no mapping files written).
+- `--check-sql` Only test SQL connectivity & list table columns (no mapping files written).
 
 ### Examples
 
@@ -71,6 +86,20 @@ Running from the project folder directly (shorthand):
 
 ```bash
 dotnet run -- dbo.Customer account
+```
+
+Connectivity / metadata checks (skip mapping generation):
+
+```bash
+dotnet run -- dbo.Customer account --check-dataverse
+dotnet run -- dbo.Customer account --check-sql
+dotnet run -- dbo.Customer account --check-sql --check-dataverse
+```
+
+Combine with debug wait:
+
+```bash
+dotnet run -- dbo.Customer account --check-dataverse --debug-wait
 ```
 
 ### Output
@@ -118,6 +147,8 @@ $Env:Ai__LogRaw = "false"
 ```
 
 (In Bash, use `export` or the earlier `set` examples. Remember the double underscore `__` represents the `:` hierarchy separator.)
+
+Security note: DO NOT commit real credentials or API keys into `appsettings.json`. Use user secrets (`dotnet user-secrets`) or environment variables in CI/CD. The sample `appsettings.json` values should be replaced locally and excluded from commits if they contain anything sensitive.
 
 ### Azure OpenAI Deployment Notes
 
