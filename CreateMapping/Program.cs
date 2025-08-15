@@ -29,32 +29,31 @@ public class Program
 	private static RootCommand BuildRoot(IServiceProvider provider)
 	{
 		var root = new RootCommand("SQL -> Dataverse mapping generator");
-		var sqlTableArg = new Argument<string>("sql-table", description: "SQL table name (optionally schema.table)");
-		var dvTableArg = new Argument<string>("dataverse-table", description: "Dataverse logical table name");
-		var outputOpt = new Option<string>("--output", () => "output", "Output directory");
-		var sqlScriptOpt = new Option<string?>("--sql-script", description: "Path to CREATE TABLE script (bypass live SQL)");
-		var checkDataverseOpt = new Option<bool>("--check-dataverse", description: "Only test connectivity and retrieve Dataverse entity metadata; no mapping output");
-		var checkSqlOpt = new Option<bool>("--check-sql", description: "Only test connectivity and retrieve SQL table metadata; no mapping output");
+		var sqlScriptOpt = new Option<string>("--sql-script", description: "Path to CREATE TABLE script (offline SQL schema)") { IsRequired = true };
+		var dvFileOpt = new Option<string>("--dataverse-file", description: "Path to Dataverse metadata CSV") { IsRequired = true };
+		var outputOpt = new Option<string>("--output", () => "output", "Output directory for mapping files");
+		var dvTableArg = new Argument<string>("dataverse-table", description: "Dataverse logical table name (must match rows in CSV if multi-entity file)");
+		var sqlTableArg = new Argument<string>("sql-table", description: "Logical SQL table name (used for naming only)");
 		root.AddArgument(sqlTableArg);
 		root.AddArgument(dvTableArg);
-		root.AddOption(outputOpt);
 		root.AddOption(sqlScriptOpt);
-		root.AddOption(checkDataverseOpt);
-		root.AddOption(checkSqlOpt);
+		root.AddOption(dvFileOpt);
+		root.AddOption(outputOpt);
 
-		root.SetHandler<string, string, string, string?, bool, bool>(async (sqlTable, dvTable, outputDir, script, checkDv, checkSql) =>
+		root.SetHandler<string, string, string, string, string>(async (sqlTable, dvTable, outputDir, script, dvFile) =>
 		{
+			Environment.SetEnvironmentVariable("CM_DATAVERSE_FILE", dvFile);
 			var app = provider.GetRequiredService<MappingApp>();
 			try
 			{
-				await app.RunAsync(sqlTable, dvTable, outputDir, script, checkDv, checkSql);
+				await app.RunAsync(sqlTable, dvTable, outputDir, script);
 			}
 			catch (Exception ex)
 			{
 				provider.GetRequiredService<ILoggerFactory>().CreateLogger("Main").LogError(ex, "Execution failed");
 				Environment.ExitCode = 1;
 			}
-		}, sqlTableArg, dvTableArg, outputOpt, sqlScriptOpt, checkDataverseOpt, checkSqlOpt);
+		}, sqlTableArg, dvTableArg, outputOpt, sqlScriptOpt, dvFileOpt);
 		return root;
 	}
 
@@ -62,16 +61,16 @@ public class Program
 	{
 		var config = new ConfigurationBuilder()
 			.AddJsonFile("appsettings.json", optional: true)
+			.AddUserSecrets<Program>(optional: true)
 			.AddEnvironmentVariables()
 			.Build();
 
 		var services = new ServiceCollection();
 		services.AddSingleton<IConfiguration>(config);
 		services.AddLogging(b => b.AddSimpleConsole(o => { o.SingleLine = true; o.TimestampFormat = "HH:mm:ss "; }).SetMinimumLevel(LogLevel.Information));
-		services.AddSingleton<ISqlIntrospector, SqlIntrospector>();
 		services.AddSingleton<ISqlScriptParser, SqlScriptParser>();
 		services.AddSingleton<ISystemFieldClassifier, SystemFieldClassifier>();
-		services.AddSingleton<IDataverseMetadataProvider, DataverseMetadataProvider>();
+		services.AddSingleton<IDataverseMetadataProvider, OfflineDataverseMetadataProvider>();
 		services.AddHttpClient("azure-openai");
 		var aiEnabled = config.GetValue("Ai:Enabled", true);
 		if (aiEnabled && !string.IsNullOrWhiteSpace(config["Ai:Endpoint"]) && !string.IsNullOrWhiteSpace(config["Ai:ApiKey"]))

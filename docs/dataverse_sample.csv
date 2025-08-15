@@ -1,0 +1,13 @@
+Table,LogicalName,AttributeType,DisplayName,MaxLength,Required,OptionSetValues,PrimaryId,PrimaryName
+account,accountid,uniqueidentifier,Account, ,true,,true,false
+account,name,string,Account Name,300,true,,false,true
+account,accountnumber,string,Account Number,50,false,,false,false
+account,createdon,datetime,Created On,,false,,false,false
+account,createdby,lookup,Created By,,false,,false,false
+account,modifiedon,datetime,Modified On,,false,,false,false
+account,modifiedby,lookup,Modified By,,false,,false,false
+account,ownerid,owner,Owner,,false,,false,false
+account,statecode,states,State Code,,false,"Active;Inactive",false,false
+account,statuscode,status,Status Code,,false,"Active;Inactive",false,false
+account,versionnumber,bigint,Version Number,,false,,false,false
+account,custom_revenue,decimal,Custom Revenue,,false,,false,false
