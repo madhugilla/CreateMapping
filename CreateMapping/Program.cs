@@ -71,7 +71,6 @@ public class Program
 		services.AddSingleton<ISqlScriptParser, SqlScriptParser>();
 		services.AddSingleton<ISystemFieldClassifier, SystemFieldClassifier>();
 		services.AddSingleton<IDataverseMetadataProvider, OfflineDataverseMetadataProvider>();
-		services.AddHttpClient("azure-openai");
 		var aiEnabled = config.GetValue("Ai:Enabled", true);
 		if (aiEnabled && !string.IsNullOrWhiteSpace(config["Ai:Endpoint"]) && !string.IsNullOrWhiteSpace(config["Ai:ApiKey"]))
 			services.AddSingleton<IAiMapper, AzureOpenAiMapper>();
@@ -87,6 +86,26 @@ public class Program
 	private static async Task<int> RunAsync(string[] args)
 	{
 		var provider = BuildServices();
+		// Diagnostic: log which IAiMapper implementation is active
+		try
+		{
+			var startupLogger = provider.GetRequiredService<ILoggerFactory>().CreateLogger("Startup");
+			var mapper = provider.GetRequiredService<IAiMapper>();
+			startupLogger.LogInformation("AI mapper in use: {MapperType}", mapper.GetType().Name);
+			try
+			{
+				var cfg = provider.GetService<IConfiguration>();
+				if (cfg != null)
+				{
+					var endpoint = cfg["Ai:Endpoint"] ?? "<none>";
+					var deployment = cfg["Ai:Deployment"] ?? cfg["Ai:Model"] ?? "<none>";
+					var key = cfg["Ai:ApiKey"] ?? "";
+					startupLogger.LogInformation("AI config endpoint={Endpoint} deployment={Deployment} apiKey={ApiKeyMasked}", endpoint, deployment, MaskKey(key));
+				}
+			}
+			catch { }
+		}
+		catch { /* swallow any diagnostic issues */ }
 		try
 		{
 			var root = BuildRoot(provider);
@@ -96,5 +115,12 @@ public class Program
 		{
 			if (provider is IDisposable d) d.Dispose();
 		}
+	}
+
+	private static string MaskKey(string key)
+	{
+		if (string.IsNullOrEmpty(key)) return "<empty>";
+		if (key.Length <= 8) return new string('*', key.Length);
+		return key.Substring(0,4) + new string('*', key.Length - 8) + key.Substring(key.Length - 4);
 	}
 }

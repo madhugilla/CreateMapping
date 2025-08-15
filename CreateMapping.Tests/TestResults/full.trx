@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="c3a358eb-7117-4504-b3b7-248d15e37703" name="Madhukar.Gilla@LI1283 2025-08-15 15:19:52" runUser="APPLIEDIS\Madhukar.Gilla" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-08-15T15:19:52.2067180+05:30" queuing="2025-08-15T15:19:52.2067185+05:30" start="2025-08-15T15:19:51.5471665+05:30" finish="2025-08-15T15:19:54.0227853+05:30" />
+  <TestSettings name="default" id="dca3cee3-2fab-4bf9-a02c-6af88a75e1db">
+    <Deployment runDeploymentRoot="Madhukar.Gilla_LI1283_2025-08-15_15_19_52" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="ba2a51af-086d-42ae-a46a-94a10489251f" testId="0113b3c1-c91f-8e7b-f93c-bcb24944fa47" testName="CreateMapping.Tests.AzureOpenAiMapperRetryTests.ExhaustsRetriesReturnsEmpty" computerName="LI1283" duration="00:00:01.2248824" startTime="2025-08-15T15:19:53.9612946+05:30" endTime="2025-08-15T15:19:53.9612949+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ba2a51af-086d-42ae-a46a-94a10489251f" />
+    <UnitTestResult executionId="c317f7c6-5fdc-4b42-81c6-6b8d9b5b1275" testId="83d3706a-3bb4-5de6-a773-4f7a6e1d32f2" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;modifiedon&quot;, expectedIsSystem: True, expectedType: ModifiedOn)" computerName="LI1283" duration="00:00:00.0000162" startTime="2025-08-15T15:19:52.1568070+05:30" endTime="2025-08-15T15:19:52.1568071+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c317f7c6-5fdc-4b42-81c6-6b8d9b5b1275" />
+    <UnitTestResult executionId="bbb37e0c-cccf-42f7-a02f-b58def8bb5fb" testId="5f04fa5a-a546-cced-dd5e-561100af7eaf" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;customfield&quot;, expectedIsSystem: False, expectedType: None)" computerName="LI1283" duration="00:00:00.0001533" startTime="2025-08-15T15:19:52.1569321+05:30" endTime="2025-08-15T15:19:52.1569321+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bbb37e0c-cccf-42f7-a02f-b58def8bb5fb" />
+    <UnitTestResult executionId="994f4179-c884-4a49-8f99-81efbf36a7bc" testId="0022bbf0-4e98-0d25-4acf-8926a5e38257" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;modifiedby&quot;, expectedIsSystem: True, expectedType: ModifiedBy)" computerName="LI1283" duration="00:00:00.0000138" startTime="2025-08-15T15:19:52.1570280+05:30" endTime="2025-08-15T15:19:52.1570280+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="994f4179-c884-4a49-8f99-81efbf36a7bc" />
+    <UnitTestResult executionId="915c999e-9ee5-47e8-82a2-211f14b0403d" testId="588f19de-c68e-a644-9297-f3b7047b996f" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemPrefixFieldsCorrectly(logicalName: &quot;mspcat_catalogfield&quot;, expectedIsSystem: True, expectedType: Other)" computerName="LI1283" duration="00:00:00.0000111" startTime="2025-08-15T15:19:52.1595350+05:30" endTime="2025-08-15T15:19:52.1595351+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="915c999e-9ee5-47e8-82a2-211f14b0403d" />
+    <UnitTestResult executionId="ea527df5-b6cc-4342-b224-b5076ead70fe" testId="a0c50910-4906-4a5e-51ad-4f3a7c49b001" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemPrefixFieldsCorrectly(logicalName: &quot;msft_customfield&quot;, expectedIsSystem: True, expectedType: Other)" computerName="LI1283" duration="00:00:00.0003315" startTime="2025-08-15T15:19:52.1594951+05:30" endTime="2025-08-15T15:19:52.1594952+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ea527df5-b6cc-4342-b224-b5076ead70fe" />
+    <UnitTestResult executionId="f30731e7-224c-4d07-b060-e4922226d603" testId="bcde361f-ca61-ab41-5741-d28b6e5cce41" testName="CreateMapping.Tests.OrchestratorTests.ReturnsEmptyWhenTargetEmpty" computerName="LI1283" duration="00:00:00.0018114" startTime="2025-08-15T15:19:52.1999696+05:30" endTime="2025-08-15T15:19:52.1999700+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f30731e7-224c-4d07-b060-e4922226d603" />
+    <UnitTestResult executionId="a9915b92-bacd-4aa1-b13b-d9c75d9ae0ab" testId="fc2dbf8a-191e-5291-f7ff-915fed078fd5" testName="CreateMapping.Tests.SystemFieldClassifierTests.SystemFieldsPriorityOrderedByImportance" computerName="LI1283" duration="00:00:00.0001847" startTime="2025-08-15T15:19:52.1595804+05:30" endTime="2025-08-15T15:19:52.1595804+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a9915b92-bacd-4aa1-b13b-d9c75d9ae0ab" />
+    <UnitTestResult executionId="0f5f325a-4ade-4905-bd87-cef62e511c8c" testId="4df476e5-ef4e-b2cc-c4e9-d72240dbfca4" testName="CreateMapping.Tests.AzureOpenAiMapperParsingTests.ReturnsEmptyWhenNoArray" computerName="LI1283" duration="00:00:00.0023395" startTime="2025-08-15T15:19:52.1023700+05:30" endTime="2025-08-15T15:19:52.1024063+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0f5f325a-4ade-4905-bd87-cef62e511c8c" />
+    <UnitTestResult executionId="e4b460e6-e11f-480f-95f3-aaa2d6b177d7" testId="316fda32-0676-0abb-af41-80e1a863e26c" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;ownerid&quot;, expectedIsSystem: True, expectedType: Owner)" computerName="LI1283" duration="00:00:00.0081868" startTime="2025-08-15T15:19:52.1124877+05:30" endTime="2025-08-15T15:19:52.1124884+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e4b460e6-e11f-480f-95f3-aaa2d6b177d7" />
+    <UnitTestResult executionId="91a8cc49-ad95-4bac-926d-33c1ccfea6cd" testId="e45cb35f-901d-e7d3-ae3e-29229d9df60a" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;versionnumber&quot;, expectedIsSystem: True, expectedType: Version)" computerName="LI1283" duration="00:00:00.0000077" startTime="2025-08-15T15:19:52.1571021+05:30" endTime="2025-08-15T15:19:52.1571022+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="91a8cc49-ad95-4bac-926d-33c1ccfea6cd" />
+    <UnitTestResult executionId="fe46e717-726f-4104-8bf2-395db9596759" testId="871f17a2-bc0b-f8e5-c041-880b017e3116" testName="CreateMapping.Tests.PrioritizedMappingTests.SystemFieldsOrderedByPriorityWithinSystemType" computerName="LI1283" duration="00:00:00.0034999" startTime="2025-08-15T15:19:52.1939943+05:30" endTime="2025-08-15T15:19:52.1939946+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fe46e717-726f-4104-8bf2-395db9596759" />
+    <UnitTestResult executionId="16fd73cb-21d9-4510-9530-8040568b5219" testId="ae0ddc3d-f919-d621-b950-b971dc829bb7" testName="CreateMapping.Tests.OrchestratorTests.DropsBelowReviewThreshold" computerName="LI1283" duration="00:00:00.0027992" startTime="2025-08-15T15:19:52.1980329+05:30" endTime="2025-08-15T15:19:52.1980331+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16fd73cb-21d9-4510-9530-8040568b5219" />
+    <UnitTestResult executionId="64964dd4-8b78-423b-8bb9-e94f297523ed" testId="72390978-7eff-27b0-a619-65e6f2c2c292" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;businessname&quot;, expectedIsSystem: False, expectedType: None)" computerName="LI1283" duration="00:00:00.0000090" startTime="2025-08-15T15:19:52.1570644+05:30" endTime="2025-08-15T15:19:52.1570645+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="64964dd4-8b78-423b-8bb9-e94f297523ed" />
+    <UnitTestResult executionId="9172b28d-9038-44bb-9bc4-df8814f2fdf3" testId="223f1c74-7727-9ed0-1de5-f332845bd8a4" testName="CreateMapping.Tests.AzureOpenAiMapperRetryTests.RetriesOn429ThenSucceeds" computerName="LI1283" duration="00:00:00.6399454" startTime="2025-08-15T15:19:52.7362563+05:30" endTime="2025-08-15T15:19:52.7362572+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9172b28d-9038-44bb-9bc4-df8814f2fdf3" />
+    <UnitTestResult executionId="763c0a72-dced-4564-9ae0-cef3618e58a9" testId="ef106239-eb30-62ab-a051-5f98fbf3da8d" testName="CreateMapping.Tests.PrioritizedMappingTests.PrioritizesCustomFieldsOverSystemFields" computerName="LI1283" duration="00:00:00.0942997" startTime="2025-08-15T15:19:52.1903329+05:30" endTime="2025-08-15T15:19:52.1903333+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="763c0a72-dced-4564-9ae0-cef3618e58a9" />
+    <UnitTestResult executionId="34c60f04-4bce-4a42-8719-229787543caa" testId="34b2f69d-84aa-4991-fd5f-e8bec649f034" testName="CreateMapping.Tests.AzureOpenAiMapperParsingTests.ParsesValidJsonArray" computerName="LI1283" duration="00:00:00.0002522" startTime="2025-08-15T15:19:52.1060053+05:30" endTime="2025-08-15T15:19:52.1060054+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="34c60f04-4bce-4a42-8719-229787543caa" />
+    <UnitTestResult executionId="afaa5c6b-192a-4782-bd56-191e51844ac5" testId="f535db3f-1b28-33a7-e554-fed0d3d60ab0" testName="CreateMapping.Tests.SystemFieldClassifierTests.CustomFieldsGetHighestPriority" computerName="LI1283" duration="00:00:00.0081613" startTime="2025-08-15T15:19:52.1063216+05:30" endTime="2025-08-15T15:19:52.1063217+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="afaa5c6b-192a-4782-bd56-191e51844ac5" />
+    <UnitTestResult executionId="db0e97f6-e31d-45cd-a9f1-0d607aab14cc" testId="2081dae4-951f-14a6-33bf-565f77277b85" testName="CreateMapping.Tests.OrchestratorTests.AppliesAiSuggestionsWithThresholds" computerName="LI1283" duration="00:00:00.0024776" startTime="2025-08-15T15:19:52.2025393+05:30" endTime="2025-08-15T15:19:52.2025395+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="db0e97f6-e31d-45cd-a9f1-0d607aab14cc" />
+    <UnitTestResult executionId="89a59a82-7e0a-48b7-b16a-ac2361ce3c34" testId="14586070-2183-2e07-479d-7ca3a640cbf4" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemPrefixFieldsCorrectly(logicalName: &quot;msdyn_businessfield&quot;, expectedIsSystem: True, expectedType: Other)" computerName="LI1283" duration="00:00:00.0002000" startTime="2025-08-15T15:19:52.1594104+05:30" endTime="2025-08-15T15:19:52.1594105+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="89a59a82-7e0a-48b7-b16a-ac2361ce3c34" />
+    <UnitTestResult executionId="18798a7b-8188-4e81-9d6c-303a877f4b4f" testId="f3d6dde1-5cc6-800a-966f-e1a6f1b4a48e" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;createdby&quot;, expectedIsSystem: True, expectedType: CreatedBy)" computerName="LI1283" duration="00:00:00.0000124" startTime="2025-08-15T15:19:52.1569828+05:30" endTime="2025-08-15T15:19:52.1569828+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="18798a7b-8188-4e81-9d6c-303a877f4b4f" />
+    <UnitTestResult executionId="17b262b2-b3ae-48a5-880e-ef07ce03cd20" testId="f24024b0-8dc4-0c22-0420-111b6d42142d" testName="CreateMapping.Tests.OrchestratorTests.AppliesAiSimilarityScaling" computerName="LI1283" duration="00:00:00.0071991" startTime="2025-08-15T15:19:52.1951443+05:30" endTime="2025-08-15T15:19:52.1951446+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="17b262b2-b3ae-48a5-880e-ef07ce03cd20" />
+    <UnitTestResult executionId="d975e8ce-a1b5-4232-904f-e1c6afb28240" testId="a8c0422f-273c-5d2c-43b7-5bc5093a0391" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;statuscode&quot;, expectedIsSystem: True, expectedType: Status)" computerName="LI1283" duration="00:00:00.0000067" startTime="2025-08-15T15:19:52.1568958+05:30" endTime="2025-08-15T15:19:52.1568958+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d975e8ce-a1b5-4232-904f-e1c6afb28240" />
+    <UnitTestResult executionId="16eb0677-9724-4024-9482-117e799592f7" testId="a55d75dc-a891-8b1f-89cb-44fa3e5b8927" testName="CreateMapping.Tests.SqlScriptParserTests.ParsesAllColumnsFromCaseMigrant" computerName="LI1283" duration="00:00:00.0257382" startTime="2025-08-15T15:19:52.1639011+05:30" endTime="2025-08-15T15:19:52.1639016+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16eb0677-9724-4024-9482-117e799592f7">
+      <Output>
+        <ErrorInfo>
+          <Message>Assert.Equal() Failure: Values differ&#xD;
+Expected: 39&#xD;
+Actual:   40</Message>
+          <StackTrace>   at CreateMapping.Tests.SqlScriptParserTests.ParsesAllColumnsFromCaseMigrant() in D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\SqlScriptParserTests.cs:line 24&#xD;
+--- End of stack trace from previous location ---</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="ff21ce7f-76b1-48f3-991f-c00dd27549cf" testId="a918c4f3-9e3e-cb25-86bc-7439f474e5de" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;statecode&quot;, expectedIsSystem: True, expectedType: State)" computerName="LI1283" duration="00:00:00.0004698" startTime="2025-08-15T15:19:52.1564201+05:30" endTime="2025-08-15T15:19:52.1564201+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ff21ce7f-76b1-48f3-991f-c00dd27549cf" />
+    <UnitTestResult executionId="ebe4828f-fd3a-4a83-879a-2286d1e477d5" testId="50b4f079-9eb3-247e-cdf7-3286c7291886" testName="CreateMapping.Tests.OrchestratorTests.FiltersDuplicateTargetsKeepingFirst" computerName="LI1283" duration="00:00:00.0917044" startTime="2025-08-15T15:19:52.1877719+05:30" endTime="2025-08-15T15:19:52.1877721+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ebe4828f-fd3a-4a83-879a-2286d1e477d5" />
+    <UnitTestResult executionId="56e71642-8ae8-43e3-95d9-99e1ebda7c8d" testId="63c6c28d-93f5-57ee-5e34-639530f41466" testName="CreateMapping.Tests.OfflineE2ETests.Offline_EndToEnd_GeneratesMappingFiles" computerName="LI1283" duration="00:00:00.2422032" startTime="2025-08-15T15:19:52.3395543+05:30" endTime="2025-08-15T15:19:52.3395548+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="56e71642-8ae8-43e3-95d9-99e1ebda7c8d" />
+    <UnitTestResult executionId="1def4303-6501-4282-be7e-27a781681ba4" testId="185102dd-0663-40b9-227f-17636d03b180" testName="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;createdon&quot;, expectedIsSystem: True, expectedType: CreatedOn)" computerName="LI1283" duration="00:00:00.0000089" startTime="2025-08-15T15:19:52.1568550+05:30" endTime="2025-08-15T15:19:52.1568550+05:30" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1def4303-6501-4282-be7e-27a781681ba4" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="CreateMapping.Tests.AzureOpenAiMapperRetryTests.ExhaustsRetriesReturnsEmpty" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="0113b3c1-c91f-8e7b-f93c-bcb24944fa47">
+      <Execution id="ba2a51af-086d-42ae-a46a-94a10489251f" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.AzureOpenAiMapperRetryTests" name="ExhaustsRetriesReturnsEmpty" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.OrchestratorTests.ReturnsEmptyWhenTargetEmpty" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="bcde361f-ca61-ab41-5741-d28b6e5cce41">
+      <Execution id="f30731e7-224c-4d07-b060-e4922226d603" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.OrchestratorTests" name="ReturnsEmptyWhenTargetEmpty" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;customfield&quot;, expectedIsSystem: False, expectedType: None)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="5f04fa5a-a546-cced-dd5e-561100af7eaf">
+      <Execution id="bbb37e0c-cccf-42f7-a02f-b58def8bb5fb" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.AzureOpenAiMapperParsingTests.ParsesValidJsonArray" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="34b2f69d-84aa-4991-fd5f-e8bec649f034">
+      <Execution id="34c60f04-4bce-4a42-8719-229787543caa" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.AzureOpenAiMapperParsingTests" name="ParsesValidJsonArray" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;businessname&quot;, expectedIsSystem: False, expectedType: None)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="72390978-7eff-27b0-a619-65e6f2c2c292">
+      <Execution id="64964dd4-8b78-423b-8bb9-e94f297523ed" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;versionnumber&quot;, expectedIsSystem: True, expectedType: Version)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="e45cb35f-901d-e7d3-ae3e-29229d9df60a">
+      <Execution id="91a8cc49-ad95-4bac-926d-33c1ccfea6cd" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.OrchestratorTests.FiltersDuplicateTargetsKeepingFirst" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="50b4f079-9eb3-247e-cdf7-3286c7291886">
+      <Execution id="ebe4828f-fd3a-4a83-879a-2286d1e477d5" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.OrchestratorTests" name="FiltersDuplicateTargetsKeepingFirst" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemPrefixFieldsCorrectly(logicalName: &quot;msdyn_businessfield&quot;, expectedIsSystem: True, expectedType: Other)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="14586070-2183-2e07-479d-7ca3a640cbf4">
+      <Execution id="89a59a82-7e0a-48b7-b16a-ac2361ce3c34" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemPrefixFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.OrchestratorTests.AppliesAiSimilarityScaling" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="f24024b0-8dc4-0c22-0420-111b6d42142d">
+      <Execution id="17b262b2-b3ae-48a5-880e-ef07ce03cd20" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.OrchestratorTests" name="AppliesAiSimilarityScaling" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;statuscode&quot;, expectedIsSystem: True, expectedType: Status)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="a8c0422f-273c-5d2c-43b7-5bc5093a0391">
+      <Execution id="d975e8ce-a1b5-4232-904f-e1c6afb28240" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.AzureOpenAiMapperRetryTests.RetriesOn429ThenSucceeds" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="223f1c74-7727-9ed0-1de5-f332845bd8a4">
+      <Execution id="9172b28d-9038-44bb-9bc4-df8814f2fdf3" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.AzureOpenAiMapperRetryTests" name="RetriesOn429ThenSucceeds" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;createdon&quot;, expectedIsSystem: True, expectedType: CreatedOn)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="185102dd-0663-40b9-227f-17636d03b180">
+      <Execution id="1def4303-6501-4282-be7e-27a781681ba4" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.CustomFieldsGetHighestPriority" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="f535db3f-1b28-33a7-e554-fed0d3d60ab0">
+      <Execution id="afaa5c6b-192a-4782-bd56-191e51844ac5" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="CustomFieldsGetHighestPriority" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.PrioritizedMappingTests.SystemFieldsOrderedByPriorityWithinSystemType" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="871f17a2-bc0b-f8e5-c041-880b017e3116">
+      <Execution id="fe46e717-726f-4104-8bf2-395db9596759" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.PrioritizedMappingTests" name="SystemFieldsOrderedByPriorityWithinSystemType" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.OfflineE2ETests.Offline_EndToEnd_GeneratesMappingFiles" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="63c6c28d-93f5-57ee-5e34-639530f41466">
+      <Execution id="56e71642-8ae8-43e3-95d9-99e1ebda7c8d" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.OfflineE2ETests" name="Offline_EndToEnd_GeneratesMappingFiles" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;modifiedon&quot;, expectedIsSystem: True, expectedType: ModifiedOn)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="83d3706a-3bb4-5de6-a773-4f7a6e1d32f2">
+      <Execution id="c317f7c6-5fdc-4b42-81c6-6b8d9b5b1275" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemPrefixFieldsCorrectly(logicalName: &quot;mspcat_catalogfield&quot;, expectedIsSystem: True, expectedType: Other)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="588f19de-c68e-a644-9297-f3b7047b996f">
+      <Execution id="915c999e-9ee5-47e8-82a2-211f14b0403d" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemPrefixFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;modifiedby&quot;, expectedIsSystem: True, expectedType: ModifiedBy)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="0022bbf0-4e98-0d25-4acf-8926a5e38257">
+      <Execution id="994f4179-c884-4a49-8f99-81efbf36a7bc" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SqlScriptParserTests.ParsesAllColumnsFromCaseMigrant" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="a55d75dc-a891-8b1f-89cb-44fa3e5b8927">
+      <Execution id="16eb0677-9724-4024-9482-117e799592f7" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SqlScriptParserTests" name="ParsesAllColumnsFromCaseMigrant" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.AzureOpenAiMapperParsingTests.ReturnsEmptyWhenNoArray" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="4df476e5-ef4e-b2cc-c4e9-d72240dbfca4">
+      <Execution id="0f5f325a-4ade-4905-bd87-cef62e511c8c" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.AzureOpenAiMapperParsingTests" name="ReturnsEmptyWhenNoArray" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;createdby&quot;, expectedIsSystem: True, expectedType: CreatedBy)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="f3d6dde1-5cc6-800a-966f-e1a6f1b4a48e">
+      <Execution id="18798a7b-8188-4e81-9d6c-303a877f4b4f" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.PrioritizedMappingTests.PrioritizesCustomFieldsOverSystemFields" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="ef106239-eb30-62ab-a051-5f98fbf3da8d">
+      <Execution id="763c0a72-dced-4564-9ae0-cef3618e58a9" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.PrioritizedMappingTests" name="PrioritizesCustomFieldsOverSystemFields" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemPrefixFieldsCorrectly(logicalName: &quot;msft_customfield&quot;, expectedIsSystem: True, expectedType: Other)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="a0c50910-4906-4a5e-51ad-4f3a7c49b001">
+      <Execution id="ea527df5-b6cc-4342-b224-b5076ead70fe" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemPrefixFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.OrchestratorTests.DropsBelowReviewThreshold" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="ae0ddc3d-f919-d621-b950-b971dc829bb7">
+      <Execution id="16fd73cb-21d9-4510-9530-8040568b5219" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.OrchestratorTests" name="DropsBelowReviewThreshold" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.SystemFieldsPriorityOrderedByImportance" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="fc2dbf8a-191e-5291-f7ff-915fed078fd5">
+      <Execution id="a9915b92-bacd-4aa1-b13b-d9c75d9ae0ab" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="SystemFieldsPriorityOrderedByImportance" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.OrchestratorTests.AppliesAiSuggestionsWithThresholds" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="2081dae4-951f-14a6-33bf-565f77277b85">
+      <Execution id="db0e97f6-e31d-45cd-a9f1-0d607aab14cc" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.OrchestratorTests" name="AppliesAiSuggestionsWithThresholds" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;statecode&quot;, expectedIsSystem: True, expectedType: State)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="a918c4f3-9e3e-cb25-86bc-7439f474e5de">
+      <Execution id="ff21ce7f-76b1-48f3-991f-c00dd27549cf" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+    <UnitTest name="CreateMapping.Tests.SystemFieldClassifierTests.ClassifiesSystemFieldsCorrectly(logicalName: &quot;ownerid&quot;, expectedIsSystem: True, expectedType: Owner)" storage="d:\un-mimosa\migration_mapping\willthiswork\createmapping\createmapping.tests\bin\debug\net8.0\createmapping.tests.dll" id="316fda32-0676-0abb-af41-80e1a863e26c">
+      <Execution id="e4b460e6-e11f-480f-95f3-aaa2d6b177d7" />
+      <TestMethod codeBase="D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\bin\Debug\net8.0\CreateMapping.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="CreateMapping.Tests.SystemFieldClassifierTests" name="ClassifiesSystemFieldsCorrectly" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="0113b3c1-c91f-8e7b-f93c-bcb24944fa47" executionId="ba2a51af-086d-42ae-a46a-94a10489251f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="83d3706a-3bb4-5de6-a773-4f7a6e1d32f2" executionId="c317f7c6-5fdc-4b42-81c6-6b8d9b5b1275" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5f04fa5a-a546-cced-dd5e-561100af7eaf" executionId="bbb37e0c-cccf-42f7-a02f-b58def8bb5fb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="0022bbf0-4e98-0d25-4acf-8926a5e38257" executionId="994f4179-c884-4a49-8f99-81efbf36a7bc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="588f19de-c68e-a644-9297-f3b7047b996f" executionId="915c999e-9ee5-47e8-82a2-211f14b0403d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a0c50910-4906-4a5e-51ad-4f3a7c49b001" executionId="ea527df5-b6cc-4342-b224-b5076ead70fe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bcde361f-ca61-ab41-5741-d28b6e5cce41" executionId="f30731e7-224c-4d07-b060-e4922226d603" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fc2dbf8a-191e-5291-f7ff-915fed078fd5" executionId="a9915b92-bacd-4aa1-b13b-d9c75d9ae0ab" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4df476e5-ef4e-b2cc-c4e9-d72240dbfca4" executionId="0f5f325a-4ade-4905-bd87-cef62e511c8c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="316fda32-0676-0abb-af41-80e1a863e26c" executionId="e4b460e6-e11f-480f-95f3-aaa2d6b177d7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e45cb35f-901d-e7d3-ae3e-29229d9df60a" executionId="91a8cc49-ad95-4bac-926d-33c1ccfea6cd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="871f17a2-bc0b-f8e5-c041-880b017e3116" executionId="fe46e717-726f-4104-8bf2-395db9596759" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ae0ddc3d-f919-d621-b950-b971dc829bb7" executionId="16fd73cb-21d9-4510-9530-8040568b5219" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="72390978-7eff-27b0-a619-65e6f2c2c292" executionId="64964dd4-8b78-423b-8bb9-e94f297523ed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="223f1c74-7727-9ed0-1de5-f332845bd8a4" executionId="9172b28d-9038-44bb-9bc4-df8814f2fdf3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ef106239-eb30-62ab-a051-5f98fbf3da8d" executionId="763c0a72-dced-4564-9ae0-cef3618e58a9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="34b2f69d-84aa-4991-fd5f-e8bec649f034" executionId="34c60f04-4bce-4a42-8719-229787543caa" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f535db3f-1b28-33a7-e554-fed0d3d60ab0" executionId="afaa5c6b-192a-4782-bd56-191e51844ac5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2081dae4-951f-14a6-33bf-565f77277b85" executionId="db0e97f6-e31d-45cd-a9f1-0d607aab14cc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="14586070-2183-2e07-479d-7ca3a640cbf4" executionId="89a59a82-7e0a-48b7-b16a-ac2361ce3c34" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f3d6dde1-5cc6-800a-966f-e1a6f1b4a48e" executionId="18798a7b-8188-4e81-9d6c-303a877f4b4f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f24024b0-8dc4-0c22-0420-111b6d42142d" executionId="17b262b2-b3ae-48a5-880e-ef07ce03cd20" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a8c0422f-273c-5d2c-43b7-5bc5093a0391" executionId="d975e8ce-a1b5-4232-904f-e1c6afb28240" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a55d75dc-a891-8b1f-89cb-44fa3e5b8927" executionId="16eb0677-9724-4024-9482-117e799592f7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a918c4f3-9e3e-cb25-86bc-7439f474e5de" executionId="ff21ce7f-76b1-48f3-991f-c00dd27549cf" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="50b4f079-9eb3-247e-cdf7-3286c7291886" executionId="ebe4828f-fd3a-4a83-879a-2286d1e477d5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="63c6c28d-93f5-57ee-5e34-639530f41466" executionId="56e71642-8ae8-43e3-95d9-99e1ebda7c8d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="185102dd-0663-40b9-227f-17636d03b180" executionId="1def4303-6501-4282-be7e-27a781681ba4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="28" executed="28" passed="27" failed="1" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.5.8+bd6d97b49a (64-bit .NET 8.0.18)&#xD;
+[xUnit.net 00:00:00.06]   Discovering: CreateMapping.Tests&#xD;
+[xUnit.net 00:00:00.11]   Discovered:  CreateMapping.Tests&#xD;
+[xUnit.net 00:00:00.12]   Starting:    CreateMapping.Tests&#xD;
+15:19:52 info: CreateMapping.MappingApp[0] Parsing SQL metadata from script D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\docs\CaseMigrant.sql&#xD;
+15:19:52 info: CreateMapping.MappingApp[0] Parsed SQL table CaseMigrant with 40 columns&#xD;
+15:19:52 info: CreateMapping.MappingApp[0] Retrieving Dataverse metadata for m360_case&#xD;
+[xUnit.net 00:00:00.22]       Assert.Equal() Failure: Values differ&#xD;
+[xUnit.net 00:00:00.22]       Expected: 39&#xD;
+[xUnit.net 00:00:00.22]       Actual:   40&#xD;
+[xUnit.net 00:00:00.22]       Stack Trace:&#xD;
+[xUnit.net 00:00:00.23]         D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\SqlScriptParserTests.cs(24,0): at CreateMapping.Tests.SqlScriptParserTests.ParsesAllColumnsFromCaseMigrant()&#xD;
+[xUnit.net 00:00:00.23]         --- End of stack trace from previous location ---&#xD;
+15:19:52 info: CreateMapping.Services.OfflineDataverseMetadataProvider[0] Loaded 94 Dataverse columns from offline file D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\docs\m360_case_csv.csv&#xD;
+15:19:52 info: CreateMapping.Mapping.MappingOrchestrator[0] Requesting AI mapping suggestions (source cols: 40, target cols: 94, custom target cols: 83, system target cols: 11)&#xD;
+15:19:52 info: CreateMapping.Mapping.MappingOrchestrator[0] Mapping complete: 0 accepted, 0 need review, 40 unresolved source columns, 94 unused target columns&#xD;
+15:19:52 info: CreateMapping.MappingApp[0] Mapping files written: D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\_e2e_output\mapping_CaseMigrant_m360_case_20250815_094952.csv | D:\un-mimosa\migration_mapping\WillThisWork\CreateMapping\CreateMapping.Tests\_e2e_output\mapping_CaseMigrant_m360_case_20250815_094952.json&#xD;
+[xUnit.net 00:00:02.03]   Finished:    CreateMapping.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="LI1283" outcome="Error" timestamp="2025-08-15T15:19:52.2133677+05:30">
+        <Text>[xUnit.net 00:00:00.22]     CreateMapping.Tests.SqlScriptParserTests.ParsesAllColumnsFromCaseMigrant [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

@@ -13,12 +13,13 @@ public sealed class SqlScriptParser : ISqlScriptParser
         _logger = logger;
     }
 
-    private static readonly Regex CreateTableRegex = new(
-        @"CREATE\s+TABLE\s+(?<name>\[?[^\s\(]+\]?\.?\[?[^\s\(]+\]?)[\s\r\n]*\((?<body>.*?)\)" ,
-        RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+    // Capture table name; body extracted manually to handle nested parentheses inside types (e.g., NVARCHAR(255), DATETIME2(7)).
+    private static readonly Regex CreateTableNameRegex = new(
+        @"CREATE\s+TABLE\s+(?<name>\[?[^\s\(]+\]?\.?\[?[^\s\(]+\]?)",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private static readonly Regex ColumnLineRegex = new(
-        @"^(?<col>\[?[A-Za-z0-9_]+\]?)[\t ]+(?<type>[A-Za-z0-9_]+)(\((?<len>[^\)]+)\))?" ,
+        @"^(?<col>\[?[A-Za-z0-9_]+\]?)[\t ]+(?<type>[A-Za-z0-9_]+)(\((?<len>[^\)]+)\))?",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     public Task<TableMetadata> ParseAsync(string scriptPath, string tableName, CancellationToken ct = default)
@@ -29,17 +30,36 @@ public sealed class SqlScriptParser : ISqlScriptParser
         }
         var script = File.ReadAllText(scriptPath);
 
-        var matches = CreateTableRegex.Matches(script);
+        var matches = CreateTableNameRegex.Matches(script);
         string normalizedInputName = NormalizeName(tableName);
         foreach (Match m in matches)
         {
             var name = m.Groups["name"].Value.Trim();
             var normName = NormalizeName(name);
-            if (normName.Equals(normalizedInputName, StringComparison.OrdinalIgnoreCase) || matches.Count == 1)
+            if (!normName.Equals(normalizedInputName, StringComparison.OrdinalIgnoreCase) && matches.Count != 1)
+                continue;
+
+            // Locate opening parenthesis after this match
+            var searchStart = m.Index + m.Length;
+            var openIdx = script.IndexOf('(', searchStart);
+            if (openIdx < 0) continue;
+            int depth = 0;
+            int i = openIdx;
+            for (; i < script.Length; i++)
             {
-                var body = m.Groups["body"].Value;
-                var columns = ParseColumns(body);
-                return Task.FromResult(new TableMetadata("SQL_SCRIPT", tableName, columns));
+                var ch = script[i];
+                if (ch == '(') depth++;
+                else if (ch == ')')
+                {
+                    depth--;
+                    if (depth == 0)
+                    {
+                        // Body between openIdx+1 and i-1
+                        var body = script.Substring(openIdx + 1, i - openIdx - 1);
+                        var columns = ParseColumns(body);
+                        return Task.FromResult(new TableMetadata("SQL_SCRIPT", tableName, columns));
+                    }
+                }
             }
         }
 
@@ -53,11 +73,18 @@ public sealed class SqlScriptParser : ISqlScriptParser
         var lines = body.Split('\n');
         foreach (var rawLine in lines)
         {
-            var line = rawLine.Trim();
+            var line = rawLine;
+            // Remove inline comments
+            var commentIdx = line.IndexOf("--", StringComparison.Ordinal);
+            if (commentIdx >= 0) line = line.Substring(0, commentIdx);
+            line = line.Trim();
             if (line.Length == 0) continue;
             if (line.StartsWith("CONSTRAINT", StringComparison.OrdinalIgnoreCase) || line.StartsWith("PRIMARY KEY", StringComparison.OrdinalIgnoreCase) || line.StartsWith("UNIQUE", StringComparison.OrdinalIgnoreCase))
                 continue;
-            line = line.TrimEnd(',');
+            // Remove trailing comma even if there is trailing whitespace
+            if (line.EndsWith(",")) line = line[..^1];
+            // Also handle comma before trailing whitespace
+            if (line.EndsWith(",", StringComparison.Ordinal)) line = line.TrimEnd(',');
             var colMatch = ColumnLineRegex.Match(line);
             if (!colMatch.Success) continue;
             var colName = TrimBrackets(colMatch.Groups["col"].Value);
@@ -79,7 +106,8 @@ public sealed class SqlScriptParser : ISqlScriptParser
                     length = l;
                 }
             }
-            result.Add(new ColumnMetadata(colName, type, true, length, precision, scale));
+            var isNullable = !line.Contains("NOT NULL", StringComparison.OrdinalIgnoreCase);
+            result.Add(new ColumnMetadata(colName, type, isNullable, length, precision, scale));
         }
         return result;
     }

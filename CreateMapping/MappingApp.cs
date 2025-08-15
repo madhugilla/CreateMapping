@@ -40,8 +40,9 @@ public sealed class MappingApp
             return 1;
         }
 
-        _logger.LogInformation("Parsing SQL metadata from script {Script}", sqlScriptPath);
-        var sqlMeta = await _scriptParser.ParseAsync(sqlScriptPath, sqlTableName, ct);
+    _logger.LogInformation("Parsing SQL metadata from script {Script}", sqlScriptPath);
+    var sqlMeta = await _scriptParser.ParseAsync(sqlScriptPath, sqlTableName, ct);
+    _logger.LogInformation("Parsed SQL table {Table} with {ColumnCount} columns", sqlMeta.Name, sqlMeta.Columns.Count);
 
         _logger.LogInformation("Retrieving Dataverse metadata for {Table}", dvTable);
         var dvMeta = await _dataverse.GetTableMetadataAsync(dvTable, ct);

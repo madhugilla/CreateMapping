@@ -1,0 +1,113 @@
+﻿Status,SourceColumn,SourceType,SourceNullable,SourceLength,TargetColumn,TargetType,TargetRequired,MatchType,Confidence,Transformation,Rationale
+Accepted,CreatedBy,NVARCHAR,False,50,owneridname,String,True,AI-Custom,0.945,None,Direct mapping of ownership name.
+Accepted,IsUnaccompaniedMinor,BIT,False,,m360_is_unaccompanied_minor,Boolean,False,AI-Custom,0.945,None,Direct binary indicator for minor status.
+Accepted,MigrantCaseID,BIGINT,False,,m360_caseid,Uniqueidentifier,True,AI-Custom,0.84,Conversion to Uniqueidentifier,"Mappings based on ID, with required and compatible data type."
+Accepted,CaseNo,NVARCHAR,False,32,m360_primaryreferencenumber,String,False,AI-Custom,0.84,None,Semantically matches the identification purpose.
+Accepted,RegistrationDate,DATETIME,False,,m360_created_on_date,DateTime,False,AI-Custom,0.84,None,Created date mapping is essential for record-keeping.
+Accepted,Category,NVARCHAR,True,50,m360_categoryname,String,False,AI-Custom,0.84,None,Direct mapping to the descriptive representation of category.
+Accepted,ReferralDate,DATETIME,True,,m360_referraldate,DateTime,False,AI-Custom,0.84,None,Direct match to referral date tracking.
+Accepted,Location,NVARCHAR,True,50,m360_caselocation,String,False,AI-Custom,0.84,None,Direct mapping based on intended logical match.
+Accepted,LastDateModified,DATETIME,True,,m360_last_date_modified,DateTime,False,AI-Custom,0.84,None,Tracks modifications accurately.
+Accepted,IsRevoke,BIT,False,,m360_is_revoke,Boolean,False,AI-Custom,0.84,None,Mapping indicates case revocation status.
+Accepted,ValidFrom,DATETIME,True,,m360_valid_from,DateTime,False,AI-Custom,0.84,None,Important for date range validity.
+Accepted,ValidTo,DATETIME,True,,m360_valid_to,DateTime,False,AI-Custom,0.84,None,Important for date range validity.
+Accepted,GlobalCaseStatus,NVARCHAR,True,10,m360_case_status,Lookup,False,AI-Custom,0.84,None,Matches case status with specified category.
+Accepted,CaseGUID,NVARCHAR,True,255,m360_externalcasenumber,String,False,AI-Custom,0.735,None,Business purpose as unique reference number; requires appropriate mapping.
+Accepted,SendingMission,NVARCHAR,True,5,m360_managing_mission,Lookup,False,AI-Custom,0.735,None,Matches in probable purpose of indicating responsible missions.
+Accepted,PrimarySource,NVARCHAR,True,50,m360_category,Lookup,False,AI-Custom,0.735,None,Categorical mapping based on primary classification.
+Accepted,DestinationCountry,NVARCHAR,True,3,m360_caselocationcountryid,Lookup,False,AI-Custom,0.735,None,"Indicates the location, matching with country identifiers."
+Accepted,ReferralAgency,NVARCHAR,True,50,m360_referral_entity,Lookup,False,AI-Custom,0.735,None,Business logic indicates involvement of a referral agency.
+Accepted,BasedCity,NVARCHAR,True,50,m360_final_destination,Lookup,False,AI-Custom,0.735,None,"Indicates base city, possibly linking to final destinations."
+Accepted,BasedCountry,NVARCHAR,True,3,m360_final_destination_type,Lookup,False,AI-Custom,0.735,None,Indicates possible finality for migration.
+Accepted,PromissoryNoteCategory,NVARCHAR,True,10,m360_promisory_note_category,Lookup,False,AI-Custom,0.735,None,Represents intended mapping for note categorization.
+Accepted,isExternal,BIT,True,,m360_external_case_type,Lookup,False,AI-Custom,0.735,None,"Indicates whether case is external, correlating to case type mapping."
+UnresolvedSource,CaseWorker,NVARCHAR,True,50,,,,,,,
+UnresolvedSource,ChangeStatusOtherReason,NVARCHAR,True,255,,,,,,,
+UnresolvedSource,ChangeStatusReason,NVARCHAR,True,10,,,,,,,
+UnresolvedSource,EarliestTravelDate,DATETIME,True,,,,,,,,
+UnresolvedSource,FinalDestination,NVARCHAR,True,5,,,,,,,
+UnresolvedSource,FinalDestinationType,NVARCHAR,True,5,,,,,,,
+UnresolvedSource,LatestTravelDate,DATETIME,True,,,,,,,,
+UnresolvedSource,LocationCountry,NVARCHAR,True,3,,,,,,,
+UnresolvedSource,ManagingMission,NVARCHAR,True,5,,,,,,,
+UnresolvedSource,PrimaryRefNo,NVARCHAR,True,50,,,,,,,
+UnresolvedSource,ReferralAgencyContact,NVARCHAR,True,100,,,,,,,
+UnresolvedSource,ReferralEntity,NVARCHAR,True,10,,,,,,,
+UnresolvedSource,Remarks,NVARCHAR,True,255,,,,,,,
+UnresolvedSource,rowguid,UNIQUEIDENTIFIER,False,,,,,,,,
+UnresolvedSource,SecondaryReferenceNo,NVARCHAR,True,50,,,,,,,
+UnresolvedSource,SecondarySource,NVARCHAR,True,50,,,,,,,
+UnresolvedSource,trigger_timestamp,DATETIME2,False,7,,,,,,,
+UnresolvedSource,xMFID,NVARCHAR,True,20,,,,,,,
+UnusedTarget,,,,,createdby,Lookup,False,,,,
+UnusedTarget,,,,,createdbyname,String,False,,,,
+UnusedTarget,,,,,createdbyyominame,String,True,,,,
+UnusedTarget,,,,,createdon,DateTime,False,,,,
+UnusedTarget,,,,,createdonbehalfby,Lookup,False,,,,
+UnusedTarget,,,,,createdonbehalfbyname,String,False,,,,
+UnusedTarget,,,,,createdonbehalfbyyominame,String,True,,,,
+UnusedTarget,,,,,importsequencenumber,Integer,False,,,,
+UnusedTarget,,,,,m360_caselocationcountryidname,String,False,,,,
+UnusedTarget,,,,,m360_casemembershipid,Lookup,False,,,,
+UnusedTarget,,,,,m360_casemembershipidname,String,False,,,,
+UnusedTarget,,,,,m360_case_statusname,String,False,,,,
+UnusedTarget,,,,,m360_case_worker,String,False,,,,
+UnusedTarget,,,,,m360_change_status_other_reason,Memo,False,,,,
+UnusedTarget,,,,,m360_change_status_reason,Lookup,False,,,,
+UnusedTarget,,,,,m360_change_status_reasonname,String,False,,,,
+UnusedTarget,,,,,m360_earliest_arrival_date,DateTime,False,,,,
+UnusedTarget,,,,,m360_external_case_typename,String,False,,,,
+UnusedTarget,,,,,m360_final_destinationname,String,False,,,,
+UnusedTarget,,,,,m360_final_destination_typename,String,False,,,,
+UnusedTarget,,,,,m360_individual_classification,Lookup,False,,,,
+UnusedTarget,,,,,m360_individual_classificationname,String,False,,,,
+UnusedTarget,,,,,m360_internalcasenumber,String,False,,,,
+UnusedTarget,,,,,m360_internal_external_case,Picklist,False,,,,
+UnusedTarget,,,,,m360_internal_external_casename,Virtual,False,,,,
+UnusedTarget,,,,,m360_is_revokename,Virtual,False,,,,
+UnusedTarget,,,,,m360_is_unaccompanied_minorname,Virtual,False,,,,
+UnusedTarget,,,,,m360_managing_missionname,String,False,,,,
+UnusedTarget,,,,,m360_must_travel_by_date,DateTime,False,,,,
+UnusedTarget,,,,,m360_name,String,True,,,,
+UnusedTarget,,,,,m360_program,Lookup,False,,,,
+UnusedTarget,,,,,m360_programname,String,False,,,,
+UnusedTarget,,,,,m360_promisory_note_categoryname,String,False,,,,
+UnusedTarget,,,,,m360_referralagencyid,Lookup,False,,,,
+UnusedTarget,,,,,m360_referralagencyidname,String,False,,,,
+UnusedTarget,,,,,m360_referral_entityname,String,False,,,,
+UnusedTarget,,,,,m360_reintegration_mission,Lookup,False,,,,
+UnusedTarget,,,,,m360_reintegration_missionname,String,False,,,,
+UnusedTarget,,,,,m360_rsc,String,False,,,,
+UnusedTarget,,,,,m360_rsc_expedite,Boolean,False,,,,
+UnusedTarget,,,,,m360_rsc_expeditename,Virtual,False,,,,
+UnusedTarget,,,,,m360_secondaryreferencenumber,String,False,,,,
+UnusedTarget,,,,,m360_secondary_source,Lookup,False,,,,
+UnusedTarget,,,,,m360_secondary_sourcename,String,False,,,,
+UnusedTarget,,,,,m360_start_case_status,String,False,,,,
+UnusedTarget,,,,,m360_start_travel_status,String,False,,,,
+UnusedTarget,,,,,m360_unhcrcasenumber,String,False,,,,
+UnusedTarget,,,,,m360_urgency,Lookup,False,,,,
+UnusedTarget,,,,,m360_urgencyname,String,False,,,,
+UnusedTarget,,,,,m360_xmifid,String,False,,,,
+UnusedTarget,,,,,modifiedby,Lookup,False,,,,
+UnusedTarget,,,,,modifiedbyname,String,False,,,,
+UnusedTarget,,,,,modifiedbyyominame,String,True,,,,
+UnusedTarget,,,,,modifiedon,DateTime,False,,,,
+UnusedTarget,,,,,modifiedonbehalfby,Lookup,False,,,,
+UnusedTarget,,,,,modifiedonbehalfbyname,String,False,,,,
+UnusedTarget,,,,,modifiedonbehalfbyyominame,String,True,,,,
+UnusedTarget,,,,,overriddencreatedon,DateTime,False,,,,
+UnusedTarget,,,,,ownerid,Owner,True,,,,
+UnusedTarget,,,,,owneridtype,EntityName,True,,,,
+UnusedTarget,,,,,owneridyominame,String,True,,,,
+UnusedTarget,,,,,owningbusinessunit,Lookup,False,,,,
+UnusedTarget,,,,,owningbusinessunitname,String,True,,,,
+UnusedTarget,,,,,owningteam,Lookup,False,,,,
+UnusedTarget,,,,,owninguser,Lookup,False,,,,
+UnusedTarget,,,,,statecode,State,True,,,,
+UnusedTarget,,,,,statecodename,Virtual,False,,,,
+UnusedTarget,,,,,statuscode,Status,False,,,,
+UnusedTarget,,,,,statuscodename,Virtual,False,,,,
+UnusedTarget,,,,,timezoneruleversionnumber,Integer,False,,,,
+UnusedTarget,,,,,utcconversiontimezonecode,Integer,False,,,,
+UnusedTarget,,,,,versionnumber,BigInt,False,,,,

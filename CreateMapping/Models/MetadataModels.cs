@@ -69,7 +69,9 @@ public sealed record WeightsConfig(
     double Normalized = 0.40,
     double SemanticDomain = 0.15,
     double TypeCompatibility = 0.20,
-    double AiSimilarity = 0.30,
+    // AiSimilarity previously defaulted to 0.30 which excessively suppressed AI suggestions (multiplicative scaling)
+    // Set to 1.0 so raw AI confidence is used unless explicitly lowered.
+    double AiSimilarity = 1.0,
     double LengthPenaltyPer10Pct = -0.02,
     double HighThreshold = 0.70,
     double ReviewThreshold = 0.40

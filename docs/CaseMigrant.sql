@@ -2,9 +2,8 @@ CREATE TABLE dbo.MigrantCase
 (
     MigrantCaseID           BIGINT            NOT NULL,
     CaseGUID                NVARCHAR(255)     NULL,
-    CaseNo                  NVARCHAR(32)      NOT NULL,  -- PK
-
-    RegistrationDate        DATETIME          NOT NULL,  -- per icon in image
+    CaseNo                  NVARCHAR(32)      NOT NULL,
+    RegistrationDate        DATETIME          NOT NULL,
     SendingMission          NVARCHAR(5)       NULL,
     PrimarySource           NVARCHAR(50)      NULL,
     PrimaryRefNo            NVARCHAR(50)      NULL,

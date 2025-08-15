@@ -1,6 +1,6 @@
-using System.Net.Http.Headers;
-using System.Text;
 using System.Text.Json;
+using Azure;
+using Azure.AI.OpenAI;
 using CreateMapping.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -9,30 +9,81 @@ namespace CreateMapping.AI;
 
 public sealed class AzureOpenAiMapper : IAiMapper
 {
-    private readonly HttpClient _http;
+    private readonly OpenAIClient _client;
+    private readonly HttpClient? _http; // used when constructed with IHttpClientFactory (test/back-compat/raw mode)
     private readonly ILogger<AzureOpenAiMapper> _logger;
     private readonly string _deployment;
+    private readonly string _endpoint;
+    private readonly string? _apiVersion;
+    private readonly string _apiKeyMasked;
+    private readonly string _apiKey; // only for raw http usage; do not log
     private readonly double _temperature;
     private readonly double _maxWeight;
     private readonly int _retryCount;
     private readonly bool _logRaw;
+    private readonly bool _logRequest;
+    private readonly bool _isReasoning;
     private readonly TimeSpan _baseDelay = TimeSpan.FromMilliseconds(400);
 
-    public AzureOpenAiMapper(IConfiguration config, ILogger<AzureOpenAiMapper> logger, IHttpClientFactory factory)
+    public AzureOpenAiMapper(IConfiguration config, ILogger<AzureOpenAiMapper> logger)
     {
         _logger = logger;
-        _http = factory.CreateClient("azure-openai");
         var section = config.GetSection("Ai");
-        var endpoint = section["Endpoint"] ?? throw new InvalidOperationException("Ai:Endpoint missing");
-        var apiKey = section["ApiKey"] ?? throw new InvalidOperationException("Ai:ApiKey missing");
-        _deployment = section["Deployment"] ?? section["Model"] ?? throw new InvalidOperationException("Ai:Deployment (or Model) missing");
+        _endpoint = section["Endpoint"] ?? throw new InvalidOperationException("Ai:Endpoint missing");
+        _apiKey = section["ApiKey"] ?? throw new InvalidOperationException("Ai:ApiKey missing");
+    _deployment = section["Deployment"] ?? section["Model"] ?? throw new InvalidOperationException("Ai:Deployment (or Model) missing");
+    _apiVersion = section["ApiVersion"]; // optional preview override, e.g. 2024-12-01-preview
         _temperature = double.TryParse(section["Temperature"], out var t) ? t : 0.2;
         _maxWeight = double.TryParse(section["AiSimilarityWeight"], out var mw) ? mw : 0.30;
-    _retryCount = int.TryParse(section["RetryCount"], out var rc) ? Math.Clamp(rc, 0, 5) : 2;
+        _retryCount = int.TryParse(section["RetryCount"], out var rc) ? Math.Clamp(rc, 0, 5) : 2;
     _logRaw = bool.TryParse(section["LogRaw"], out var lr) && lr;
-        if (!endpoint.EndsWith("/")) endpoint += "/";
-        _http.BaseAddress = new Uri(endpoint);
-        _http.DefaultRequestHeaders.Add("api-key", apiKey);
+        // Default to logging request/response unless explicitly disabled (user request to log request and response)
+        var logRequestSetting = section["LogRequest"]; // if null -> default true
+        _logRequest = logRequestSetting == null || (bool.TryParse(logRequestSetting, out var lreq) && lreq);
+        // Determine if deployment represents a reasoning model (o1 family) to adjust prompt format & temperature handling
+        _isReasoning = true; // _deployment.Contains("o1", StringComparison.OrdinalIgnoreCase);
+        _apiKeyMasked = MaskKey(_apiKey);
+        if (!string.IsNullOrWhiteSpace(_apiVersion))
+        {
+            // Best-effort: attempt to map known versions, else use generic options (future-proof)
+            var options = new OpenAIClientOptions();
+            // Newer SDK may allow setting default API version through options.AdvancedOptions, else rely on header negotiation.
+            // We just record it for logging; actual version selection is handled by SDK.
+            _client = new OpenAIClient(new Uri(_endpoint), new AzureKeyCredential(_apiKey), options);
+            _logger.LogInformation("AzureOpenAI configured endpoint={Endpoint} deployment={Deployment} apiVersion={ApiVersion} reasoning={Reasoning} apiKey={ApiKeyMasked}",
+                _endpoint, _deployment, _apiVersion, _isReasoning, _apiKeyMasked);
+        }
+        else
+        {
+            _client = new OpenAIClient(new Uri(_endpoint), new AzureKeyCredential(_apiKey));
+            _logger.LogInformation("AzureOpenAI configured endpoint={Endpoint} deployment={Deployment} reasoning={Reasoning} apiKey={ApiKeyMasked}",
+                _endpoint, _deployment, _isReasoning, _apiKeyMasked);
+        }
+    }
+
+    // Back-compat/test constructor supporting raw HttpClient injection via factory. When provided, we bypass SDK and use REST for determinism in tests.
+    public AzureOpenAiMapper(IConfiguration config, ILogger<AzureOpenAiMapper> logger, IHttpClientFactory httpClientFactory)
+        : this(config, logger)
+    {
+        try
+        {
+            _http = httpClientFactory.CreateClient("azure-openai");
+            _logger.LogInformation("AzureOpenAI raw HTTP mode enabled (test/back-compat). endpoint={Endpoint} deployment={Deployment}", _endpoint, _deployment);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to acquire named HttpClient 'azure-openai'. Falling back to SDK client only.");
+        }
+    }
+
+    private static string MaskKey(string key)
+    {
+        if (string.IsNullOrEmpty(key)) return "<empty>";
+        // Avoid logging full secret: show only first 4 and last 4 characters when long enough
+        if (key.Length <= 8) return new string('*', key.Length);
+        var prefix = key.Substring(0, 4);
+        var suffix = key.Substring(key.Length - 4, 4);
+        return prefix + new string('*', key.Length - 8) + suffix;
     }
 
     public async Task<IReadOnlyList<AiMappingSuggestion>> SuggestMappingsAsync(TableMetadata source, TableMetadata target, IReadOnlyCollection<string> requestedSourceColumns, CancellationToken ct = default)
@@ -40,50 +91,188 @@ public sealed class AzureOpenAiMapper : IAiMapper
         if (target.Columns.Count == 0)
             return Array.Empty<AiMappingSuggestion>();
 
-        // We now always provide ALL (requested) source columns so the model can propose the full mapping.
         var requestedSet = new HashSet<string>(requestedSourceColumns, StringComparer.OrdinalIgnoreCase);
+        var systemPrompt = BuildReasoningSystemPrompt();
+        var payload = BuildUserPayload(source, target, requestedSet);
+        var userJson = JsonSerializer.Serialize(payload);
+        if (_logRequest)
+        {
+            var preview = userJson.Length > 1500 ? userJson[..1500] + "...<truncated>" : userJson;
+            _logger.LogInformation("AI request prepared deployment={Deployment} reasoning={Reasoning} temperature={Temperature} retryCount={RetryCount} sourceCols={SourceCount} targetCols={TargetCount} requestedFilter={RequestedFilter} payloadBytes={PayloadBytes} payloadPreview={Preview}",
+                _deployment, _isReasoning, _temperature, _retryCount, source.Columns.Count, target.Columns.Count, requestedSet.Count > 0 ? requestedSet.Count : 0, System.Text.Encoding.UTF8.GetByteCount(userJson), preview);
+        }
+        else
+        {
+            _logger.LogInformation("AI invoke start: deployment={Deployment} reasoning={Reasoning} sourceCols={SourceCount} targetCols={TargetCount} requestedFilter={RequestedFilter}", _deployment, _isReasoning, source.Columns.Count, target.Columns.Count, requestedSet.Count > 0 ? requestedSet.Count : 0);
+        }
+
+        string? content = null;
+        int? promptTokens = null;
+        int? completionTokens = null;
+        var startedAt = DateTime.UtcNow;
+        if (_http != null)
+        {
+            // Raw REST mode
+            var url = _endpoint.TrimEnd('/') + $"/openai/deployments/{_deployment}/chat/completions?api-version={_apiVersion ?? "2024-02-15-preview"}";
+            object body = _isReasoning ? BuildReasoningModelPayload(systemPrompt, userJson) : BuildStandardModelPayload(systemPrompt, userJson);
+            var json = JsonSerializer.Serialize(body);
+            for (var attempt = 0; attempt <= _retryCount; attempt++)
+            {
+                try
+                {
+                    using var req = new HttpRequestMessage(HttpMethod.Post, url);
+                    req.Headers.Add("api-key", _apiKey);
+                    req.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                    using var respHttp = await _http.SendAsync(req, ct);
+                    if ((int)respHttp.StatusCode >= 500 || (int)respHttp.StatusCode == 429 || (int)respHttp.StatusCode == 408)
+                    {
+                        if (attempt < _retryCount)
+                        {
+                            var delay = Backoff(attempt);
+                            _logger.LogWarning("AI transient HTTP status {Status}. Retry in {Delay} (attempt {Attempt}/{Max})", (int)respHttp.StatusCode, delay, attempt + 1, _retryCount + 1);
+                            await Task.Delay(delay, ct);
+                            continue;
+                        }
+                    }
+                    if (!respHttp.IsSuccessStatusCode)
+                    {
+                        _logger.LogWarning("AI raw HTTP failed status={Status}", (int)respHttp.StatusCode);
+                        break;
+                    }
+                    var rawText = await respHttp.Content.ReadAsStringAsync(ct);
+                    try
+                    {
+                        using var doc = JsonDocument.Parse(rawText);
+                        content = doc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
+                        if (doc.RootElement.TryGetProperty("usage", out var usageEl))
+                        {
+                            if (usageEl.TryGetProperty("prompt_tokens", out var pt) && pt.TryGetInt32(out var pti)) promptTokens = pti;
+                            if (usageEl.TryGetProperty("completion_tokens", out var ctok) && ctok.TryGetInt32(out var cti)) completionTokens = cti;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "AI raw HTTP parse error");
+                    }
+                    break;
+                }
+                catch (Exception ex) when (attempt < _retryCount)
+                {
+                    var delay = Backoff(attempt);
+                    _logger.LogWarning(ex, "AI raw HTTP exception. Retry in {Delay} (attempt {Attempt}/{Max})", delay, attempt + 1, _retryCount + 1);
+                    await Task.Delay(delay, ct);
+                }
+            }
+        }
+        else
+        {
+            // SDK path
+            var messages = new List<ChatRequestMessage>();
+            if (!_isReasoning)
+            {
+                messages.Add(new ChatRequestSystemMessage(systemPrompt));
+                messages.Add(new ChatRequestUserMessage(userJson));
+            }
+            else
+            {
+                messages.Add(new ChatRequestUserMessage(systemPrompt + "\n\n" + userJson));
+            }
+            var temperature = _isReasoning ? (float?)null : (float?)_temperature;
+            var opts = new ChatCompletionsOptions { DeploymentName = _deployment, Temperature = temperature };
+            foreach (var m in messages) opts.Messages.Add(m);
+            Response<ChatCompletions>? resp = null;
+            for (var attempt = 0; attempt <= _retryCount; attempt++)
+            {
+                try
+                {
+                    resp = await _client.GetChatCompletionsAsync(opts, ct);
+                    break;
+                }
+                catch (RequestFailedException rfe) when (attempt < _retryCount && IsTransient(rfe.Status))
+                {
+                    var delay = Backoff(attempt);
+                    _logger.LogWarning(rfe, "AI transient error {Status}. Retry in {Delay} (attempt {Attempt}/{Max})", rfe.Status, delay, attempt + 1, _retryCount + 1);
+                    await Task.Delay(delay, ct);
+                }
+                catch (Exception ex) when (attempt < _retryCount)
+                {
+                    var delay = Backoff(attempt);
+                    _logger.LogWarning(ex, "AI exception. Retry in {Delay} (attempt {Attempt}/{Max})", delay, attempt + 1, _retryCount + 1);
+                    await Task.Delay(delay, ct);
+                }
+            }
+            if (resp == null)
+            {
+                _logger.LogInformation("AI invoke failed after {Attempts} attempts (no response)", _retryCount + 1);
+                return Array.Empty<AiMappingSuggestion>();
+            }
+            var choice = resp.Value.Choices.FirstOrDefault();
+            content = choice?.Message?.Content;
+            promptTokens = resp.Value.Usage?.PromptTokens;
+            completionTokens = resp.Value.Usage?.CompletionTokens;
+        }
+        if (content == null)
+        {
+            _logger.LogInformation("AI returned no content");
+            return Array.Empty<AiMappingSuggestion>();
+        }
+        if (string.IsNullOrWhiteSpace(content)) return Array.Empty<AiMappingSuggestion>();
+        if (_logRaw || _logRequest)
+        {
+            var raw = content;
+            if (!_logRaw) // only request logging enabled -> truncate aggressive
+            {
+                raw = raw.Length > 1500 ? raw.Substring(0, 1500) + "...<truncated>" : raw;
+            }
+            _logger.LogInformation("AI response raw: {Raw}", raw);
+        }
+        _logger.LogInformation("AI invoke success in {ElapsedMs} ms; promptTokens={PromptTokens} completionTokens={CompletionTokens}", (DateTime.UtcNow-startedAt).TotalMilliseconds, promptTokens, completionTokens);
+
+        // Extract JSON array
+        var start = content.IndexOf('[');
+        var end = content.LastIndexOf(']');
+        if (start < 0 || end < start) return Array.Empty<AiMappingSuggestion>();
+        var slice = content.Substring(start, end - start + 1);
+        try
+        {
+            var parsed = JsonSerializer.Deserialize<List<AiMappingSuggestionInternal>>(slice, new JsonSerializerOptions{PropertyNameCaseInsensitive = true}) ?? new();
+            var materialized = parsed.Where(p => !string.IsNullOrWhiteSpace(p.Source) && !string.IsNullOrWhiteSpace(p.Target))
+                .Select(p => new AiMappingSuggestion(p.Source, p.Target, Clamp(p.Confidence), p.Transformation, p.Rationale))
+                .ToList();
+            if (_logRequest)
+            {
+                // Log concise summary of suggestions (avoid flooding logs)
+                var summary = materialized
+                    .Take(20) // cap summary
+                    .Select(s => $"{s.SourceColumn}->{s.TargetColumn}({s.Confidence:0.00})")
+                    .ToArray();
+                _logger.LogInformation("AI parsed {Count} suggestions (showing {Shown}) suggestionsSummary={Summary}", materialized.Count, summary.Length, string.Join(", ", summary));
+            }
+            return materialized;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning(ex, "Failed to parse AI suggestions JSON");
+            return Array.Empty<AiMappingSuggestion>();
+        }
+    }
+
+    private static bool IsTransient(int status) => status is 408 or 429 or 500 or 502 or 503 or 504;
+    private TimeSpan Backoff(int attempt) => TimeSpan.FromMilliseconds(_baseDelay.TotalMilliseconds * Math.Pow(2, attempt));
+
+    private object BuildUserPayload(TableMetadata source, TableMetadata target, HashSet<string> requestedSet)
+    {
         var sourceCols = source.Columns
             .Where(c => requestedSet.Count == 0 || requestedSet.Contains(c.Name))
-            .Select(c => new {
-                c.Name,
-                c.DataType,
-                c.Length,
-                c.Precision,
-                c.Scale,
-                c.IsIdentity,
-                c.IsPrimaryId,
-                c.IsPrimaryName,
-                c.IsRequired
-            });
-        
+            .Select(c => new { c.Name, c.DataType, c.Length, c.Precision, c.Scale, c.IsIdentity, c.IsPrimaryId, c.IsPrimaryName, c.IsRequired });
         var customTargetCols = target.Columns
             .Where(c => !c.IsSystemField)
-            .Select(c => new {
-                c.Name,
-                c.DataType,
-                c.Length,
-                c.IsRequired,
-                c.IsPrimaryId,
-                c.IsPrimaryName,
-                IsSystemField = false,
-                SystemFieldType = "None"
-            });
-            
+            .Select(c => new { c.Name, c.DataType, c.Length, c.IsRequired, c.IsPrimaryId, c.IsPrimaryName, IsSystemField = false, SystemFieldType = "None" });
         var systemTargetCols = target.Columns
             .Where(c => c.IsSystemField)
-            .Select(c => new {
-                c.Name,
-                c.DataType,
-                c.Length,
-                c.IsRequired,
-                c.IsPrimaryId,
-                c.IsPrimaryName,
-                IsSystemField = true,
-                SystemFieldType = c.SystemFieldType.ToString()
-            });
+            .Select(c => new { c.Name, c.DataType, c.Length, c.IsRequired, c.IsPrimaryId, c.IsPrimaryName, IsSystemField = true, SystemFieldType = c.SystemFieldType.ToString() });
 
-        var system = BuildReasoningSystemPrompt();
-        var userObj = new {
+        return new {
             sourceTable = source.Name,
             targetTable = target.Name,
             sourceColumns = sourceCols,
@@ -103,84 +292,6 @@ public sealed class AzureOpenAiMapper : IAiMapper
                 }
             }
         };
-        var user = JsonSerializer.Serialize(userObj);
-
-        // Check if this is a reasoning model (o1-preview, o1-mini)
-        var isReasoningModel = _deployment.Contains("o1", StringComparison.OrdinalIgnoreCase);
-        
-        var payload = isReasoningModel 
-            ? BuildReasoningModelPayload(system, user)
-            : BuildStandardModelPayload(system, user);
-
-        var json = JsonSerializer.Serialize(payload);
-        HttpResponseMessage? resp = null;
-        for (var attempt = 0; attempt <= _retryCount; attempt++)
-        {
-            try
-            {
-                var apiVersion = isReasoningModel ? "2024-09-01-preview" : "2024-05-01-preview";
-                using var req = new HttpRequestMessage(HttpMethod.Post, $"openai/deployments/{_deployment}/chat/completions?api-version={apiVersion}")
-                { Content = new StringContent(json, Encoding.UTF8, "application/json") };
-                resp = await _http.SendAsync(req, ct);
-                if (resp.IsSuccessStatusCode) break;
-                var status = (int)resp.StatusCode;
-                if (status is 429 or 500 or 502 or 503 or 504)
-                {
-                    if (attempt < _retryCount)
-                    {
-                        var delay = TimeSpan.FromMilliseconds(_baseDelay.TotalMilliseconds * Math.Pow(2, attempt));
-                        _logger.LogWarning("AI request transient failure {Status}. Retrying in {Delay} (attempt {Attempt}/{Max})", status, delay, attempt + 1, _retryCount + 1);
-                        await Task.Delay(delay, ct);
-                        continue;
-                    }
-                }
-                // Non-retriable or exhausted
-                _logger.LogWarning("Azure OpenAI request failed: {Status} {Reason}", status, resp.ReasonPhrase);
-                return Array.Empty<AiMappingSuggestion>();
-            }
-            catch (Exception ex) when (attempt < _retryCount)
-            {
-                var delay = TimeSpan.FromMilliseconds(_baseDelay.TotalMilliseconds * Math.Pow(2, attempt));
-                _logger.LogWarning(ex, "AI request exception, retrying in {Delay} (attempt {Attempt}/{Max})", delay, attempt + 1, _retryCount + 1);
-                await Task.Delay(delay, ct);
-            }
-        }
-        if (resp == null || !resp.IsSuccessStatusCode)
-        {
-            return Array.Empty<AiMappingSuggestion>();
-        }
-        using var stream = await resp.Content.ReadAsStreamAsync(ct);
-        if (_logRaw)
-        {
-            stream.Seek(0, SeekOrigin.Begin);
-            using var copyReader = new StreamReader(stream, Encoding.UTF8, leaveOpen: true);
-            var raw = await copyReader.ReadToEndAsync(ct);
-            stream.Seek(0, SeekOrigin.Begin);
-            _logger.LogInformation("Raw AI response: {Raw}", raw);
-        }
-        using var doc = await JsonDocument.ParseAsync(stream, cancellationToken: ct);
-        // Navigate to first choice message content
-        var content = doc.RootElement.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
-        if (string.IsNullOrWhiteSpace(content)) return Array.Empty<AiMappingSuggestion>();
-
-        // Attempt to extract JSON (in case model returns surrounding text)
-        var jsonStart = content.IndexOf('[');
-        var jsonEnd = content.LastIndexOf(']');
-        if (jsonStart < 0 || jsonEnd < jsonStart)
-            return Array.Empty<AiMappingSuggestion>();
-        var jsonSlice = content.Substring(jsonStart, jsonEnd - jsonStart + 1);
-        try
-        {
-            var parsed = JsonSerializer.Deserialize<List<AiMappingSuggestionInternal>>(jsonSlice, new JsonSerializerOptions{PropertyNameCaseInsensitive = true}) ?? new();
-            return parsed.Where(p => !string.IsNullOrWhiteSpace(p.Source) && !string.IsNullOrWhiteSpace(p.Target))
-                .Select(p => new AiMappingSuggestion(p.Source, p.Target, Clamp(p.Confidence), p.Transformation, p.Rationale))
-                .ToList();
-        }
-        catch (Exception ex)
-        {
-            _logger.LogWarning(ex, "Failed to parse AI suggestions JSON");
-            return Array.Empty<AiMappingSuggestion>();
-        }
     }
 
     private static double Clamp(double v) => v < 0 ? 0 : v > 1 ? 1 : v;

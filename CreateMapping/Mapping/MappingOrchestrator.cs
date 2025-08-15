@@ -38,6 +38,7 @@ public sealed class MappingOrchestrator : IMappingOrchestrator
                 target.Columns.Count(c => !c.IsSystemField), 
                 target.Columns.Count(c => c.IsSystemField));
             aiSuggestions = await _ai.SuggestMappingsAsync(source, target, Array.Empty<string>(), ct);
+            _logger.LogInformation("Received {SuggestionCount} AI suggestions before filtering", aiSuggestions.Count);
         }
         catch (Exception ex)
         {
