@@ -118,7 +118,9 @@ public sealed class OfflineDataverseMetadataProvider : IDataverseMetadataProvide
                     IsRequired: required,
                     OptionSetValues: optionValues,
                     IsSystemField: InferSystem(logical),
-                    SystemFieldType: InferSystemType(logical)
+                    SystemFieldType: InferSystemType(logical),
+                    DisplayName: string.IsNullOrWhiteSpace(display) ? null : display,
+                    AttributeTypeName: string.IsNullOrWhiteSpace(type) ? null : type
                 );
                 _cache.Add((tableName, column));
             }

@@ -107,7 +107,7 @@ public sealed class SqlScriptParser : ISqlScriptParser
                 }
             }
             var isNullable = !line.Contains("NOT NULL", StringComparison.OrdinalIgnoreCase);
-            result.Add(new ColumnMetadata(colName, type, isNullable, length, precision, scale));
+            result.Add(new ColumnMetadata(colName, type, isNullable, length, precision, scale)); // DisplayName not applicable for SQL script parsing
         }
         return result;
     }

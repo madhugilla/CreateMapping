@@ -1,7 +1,7 @@
 {
   "Source": {
     "SourceSystem": "SQL_SCRIPT",
-    "Name": "CaseMigrant",
+    "Name": "dbo.MigrantCase",
     "Columns": [
       {
         "Name": "MigrantCaseID",
@@ -18,7 +18,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "CaseGUID",
@@ -35,7 +37,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "CaseNo",
@@ -52,7 +56,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "RegistrationDate",
@@ -69,7 +75,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "SendingMission",
@@ -86,7 +94,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "PrimarySource",
@@ -103,7 +113,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "PrimaryRefNo",
@@ -120,7 +132,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "DestinationCountry",
@@ -137,7 +151,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "Category",
@@ -154,7 +170,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "SecondarySource",
@@ -171,7 +189,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "SecondaryReferenceNo",
@@ -188,7 +208,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ReferralDate",
@@ -205,7 +227,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ReferralAgency",
@@ -222,7 +246,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ReferralEntity",
@@ -239,7 +265,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "Location",
@@ -256,7 +284,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "LocationCountry",
@@ -273,7 +303,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "BasedCity",
@@ -290,7 +322,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "BasedCountry",
@@ -307,7 +341,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "PromissoryNoteCategory",
@@ -324,7 +360,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "FinalDestination",
@@ -341,7 +379,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "EarliestTravelDate",
@@ -358,7 +398,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "LatestTravelDate",
@@ -375,7 +417,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "GlobalCaseStatus",
@@ -392,7 +436,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "Remarks",
@@ -409,7 +455,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ChangeStatusReason",
@@ -426,7 +474,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ChangeStatusOtherReason",
@@ -443,7 +493,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "CreatedBy",
@@ -460,7 +512,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ManagingMission",
@@ -477,7 +531,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "LastDateModified",
@@ -494,7 +550,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "IsRevoke",
@@ -511,7 +569,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ValidFrom",
@@ -528,7 +588,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ValidTo",
@@ -545,7 +607,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "CaseWorker",
@@ -562,7 +626,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "IsUnaccompaniedMinor",
@@ -579,7 +645,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "xMFID",
@@ -596,7 +664,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "FinalDestinationType",
@@ -613,7 +683,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "ReferralAgencyContact",
@@ -630,7 +702,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "trigger_timestamp",
@@ -647,7 +721,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "isExternal",
@@ -664,7 +740,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       },
       {
         "Name": "rowguid",
@@ -681,7 +759,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": null,
+        "AttributeTypeName": null
       }
     ]
   },
@@ -704,7 +784,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "CreatedBy"
+        "SystemFieldType": "CreatedBy",
+        "DisplayName": "Created By",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "createdbyname",
@@ -721,7 +803,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "createdbyyominame",
@@ -738,7 +822,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "createdon",
@@ -755,7 +841,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "CreatedOn"
+        "SystemFieldType": "CreatedOn",
+        "DisplayName": "Created On",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "createdonbehalfby",
@@ -772,7 +860,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Created By (Delegate)",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "createdonbehalfbyname",
@@ -789,7 +879,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "createdonbehalfbyyominame",
@@ -806,7 +898,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "importsequencenumber",
@@ -823,7 +917,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "ImportSequence"
+        "SystemFieldType": "ImportSequence",
+        "DisplayName": "Import Sequence Number",
+        "AttributeTypeName": "Integer"
       },
       {
         "Name": "m360_case_status",
@@ -840,7 +936,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Case Status",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_case_statusname",
@@ -857,7 +955,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_case_worker",
@@ -874,7 +974,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Case Worker",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_caseid",
@@ -891,7 +993,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "UNHCR Case Identifier",
+        "AttributeTypeName": "Uniqueidentifier"
       },
       {
         "Name": "m360_caselocation",
@@ -908,7 +1012,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Case Location",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_caselocationcountryid",
@@ -925,7 +1031,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Case Location Country",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_caselocationcountryidname",
@@ -942,7 +1050,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_casemembershipid",
@@ -959,7 +1069,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Case Membership",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_casemembershipidname",
@@ -976,7 +1088,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_category",
@@ -993,7 +1107,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Category",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_categoryname",
@@ -1010,7 +1126,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_change_status_other_reason",
@@ -1027,7 +1145,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Change Status Other Reason",
+        "AttributeTypeName": "Memo"
       },
       {
         "Name": "m360_change_status_reason",
@@ -1044,7 +1164,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Change Status Reason",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_change_status_reasonname",
@@ -1061,7 +1183,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_created_on_date",
@@ -1078,7 +1202,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Created on Date",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "m360_earliest_arrival_date",
@@ -1095,7 +1221,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Earliest Arrival Date",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "m360_external_case_type",
@@ -1112,7 +1240,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "External Case Type",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_external_case_typename",
@@ -1129,7 +1259,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_externalcasenumber",
@@ -1146,7 +1278,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "External Case Number",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_final_destination",
@@ -1163,7 +1297,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Final Destination",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_final_destination_type",
@@ -1180,7 +1316,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Final Destination Type",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_final_destination_typename",
@@ -1197,7 +1335,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_final_destinationname",
@@ -1214,7 +1354,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_individual_classification",
@@ -1231,7 +1373,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Individual Classification",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_individual_classificationname",
@@ -1248,7 +1392,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_internal_external_case",
@@ -1265,7 +1411,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Internal /External Case",
+        "AttributeTypeName": "Picklist"
       },
       {
         "Name": "m360_internal_external_casename",
@@ -1282,7 +1430,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "Virtual"
       },
       {
         "Name": "m360_internalcasenumber",
@@ -1299,7 +1449,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Internal Case Number",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_is_revoke",
@@ -1316,7 +1468,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Is Revoke",
+        "AttributeTypeName": "Boolean"
       },
       {
         "Name": "m360_is_revokename",
@@ -1333,7 +1487,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "Virtual"
       },
       {
         "Name": "m360_is_unaccompanied_minor",
@@ -1350,7 +1506,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Is unaccompanied Minor",
+        "AttributeTypeName": "Boolean"
       },
       {
         "Name": "m360_is_unaccompanied_minorname",
@@ -1367,7 +1525,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "Virtual"
       },
       {
         "Name": "m360_last_date_modified",
@@ -1384,7 +1544,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Last Date Modified",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "m360_managing_mission",
@@ -1401,7 +1563,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Managing Mission",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_managing_missionname",
@@ -1418,7 +1582,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_must_travel_by_date",
@@ -1435,7 +1601,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Must Travel by Date",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "m360_name",
@@ -1452,7 +1620,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Name",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_primaryreferencenumber",
@@ -1469,7 +1639,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Primary Reference Number",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_program",
@@ -1486,7 +1658,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Program",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_programname",
@@ -1503,7 +1677,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_promisory_note_category",
@@ -1520,7 +1696,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Promisory Note Category",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_promisory_note_categoryname",
@@ -1537,7 +1715,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_referral_entity",
@@ -1554,7 +1734,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Referral Entity",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_referral_entityname",
@@ -1571,7 +1753,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_referralagencyid",
@@ -1588,7 +1772,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Referral Agency Contact",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_referralagencyidname",
@@ -1605,7 +1791,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_referraldate",
@@ -1622,7 +1810,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Referral Date",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "m360_reintegration_mission",
@@ -1639,7 +1829,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Reintegration Mission",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_reintegration_missionname",
@@ -1656,7 +1848,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_rsc",
@@ -1673,7 +1867,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "RSC",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_rsc_expedite",
@@ -1690,7 +1886,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "RSC Expedite",
+        "AttributeTypeName": "Boolean"
       },
       {
         "Name": "m360_rsc_expeditename",
@@ -1707,7 +1905,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "Virtual"
       },
       {
         "Name": "m360_secondary_source",
@@ -1724,7 +1924,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Secondary Source",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_secondary_sourcename",
@@ -1741,7 +1943,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_secondaryreferencenumber",
@@ -1758,7 +1962,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Secondary Reference Number",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_start_case_status",
@@ -1775,7 +1981,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "START Case Status",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_start_travel_status",
@@ -1792,7 +2000,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "START Travel Status",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_unhcrcasenumber",
@@ -1809,7 +2019,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "UNHCR Case Number",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_urgency",
@@ -1826,7 +2038,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Urgency",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "m360_urgencyname",
@@ -1843,7 +2057,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "m360_valid_from",
@@ -1860,7 +2076,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Valid From",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "m360_valid_to",
@@ -1877,7 +2095,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Valid to",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "m360_xmifid",
@@ -1894,7 +2114,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "XMIFID",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "modifiedby",
@@ -1911,7 +2133,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "ModifiedBy"
+        "SystemFieldType": "ModifiedBy",
+        "DisplayName": "Modified By",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "modifiedbyname",
@@ -1928,7 +2152,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "modifiedbyyominame",
@@ -1945,7 +2171,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "modifiedon",
@@ -1962,7 +2190,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "ModifiedOn"
+        "SystemFieldType": "ModifiedOn",
+        "DisplayName": "Modified On",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "modifiedonbehalfby",
@@ -1979,7 +2209,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Modified By (Delegate)",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "modifiedonbehalfbyname",
@@ -1996,7 +2228,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "modifiedonbehalfbyyominame",
@@ -2013,7 +2247,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "overriddencreatedon",
@@ -2030,7 +2266,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "OverriddenCreatedOn"
+        "SystemFieldType": "OverriddenCreatedOn",
+        "DisplayName": "Record Created On",
+        "AttributeTypeName": "DateTime"
       },
       {
         "Name": "ownerid",
@@ -2047,7 +2285,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "Owner"
+        "SystemFieldType": "Owner",
+        "DisplayName": "Owner",
+        "AttributeTypeName": "Owner"
       },
       {
         "Name": "owneridname",
@@ -2064,7 +2304,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "owneridtype",
@@ -2081,7 +2323,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "EntityName"
       },
       {
         "Name": "owneridyominame",
@@ -2098,7 +2342,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "owningbusinessunit",
@@ -2115,7 +2361,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "BusinessUnit"
+        "SystemFieldType": "BusinessUnit",
+        "DisplayName": "Owning Business Unit",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "owningbusinessunitname",
@@ -2132,7 +2380,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "String"
       },
       {
         "Name": "owningteam",
@@ -2149,7 +2399,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Owning Team",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "owninguser",
@@ -2166,7 +2418,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Owning User",
+        "AttributeTypeName": "Lookup"
       },
       {
         "Name": "statecode",
@@ -2183,7 +2437,9 @@
         "IsRequired": true,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "State"
+        "SystemFieldType": "State",
+        "DisplayName": "Status",
+        "AttributeTypeName": "State"
       },
       {
         "Name": "statecodename",
@@ -2200,7 +2456,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "Virtual"
       },
       {
         "Name": "statuscode",
@@ -2217,7 +2475,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "Status"
+        "SystemFieldType": "Status",
+        "DisplayName": "Status Reason",
+        "AttributeTypeName": "Status"
       },
       {
         "Name": "statuscodename",
@@ -2234,7 +2494,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "N/A",
+        "AttributeTypeName": "Virtual"
       },
       {
         "Name": "timezoneruleversionnumber",
@@ -2251,7 +2513,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "Time Zone Rule Version Number",
+        "AttributeTypeName": "Integer"
       },
       {
         "Name": "utcconversiontimezonecode",
@@ -2268,7 +2532,9 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": false,
-        "SystemFieldType": "None"
+        "SystemFieldType": "None",
+        "DisplayName": "UTC Conversion Time Zone Code",
+        "AttributeTypeName": "Integer"
       },
       {
         "Name": "versionnumber",
@@ -2285,48 +2551,241 @@
         "IsRequired": false,
         "OptionSetValues": null,
         "IsSystemField": true,
-        "SystemFieldType": "Version"
+        "SystemFieldType": "Version",
+        "DisplayName": "Version Number",
+        "AttributeTypeName": "BigInt"
       }
     ]
   },
-  "Accepted": [],
-  "NeedsReview": [],
+  "Accepted": [
+    {
+      "SourceColumn": "MigrantCaseID",
+      "TargetColumn": "m360_caseid",
+      "Confidence": 0.9450000000000001,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Exact name match with compatible type (Uniqueidentifier)."
+    },
+    {
+      "SourceColumn": "CaseGUID",
+      "TargetColumn": "m360_externalcasenumber",
+      "Confidence": 0.8400000000000001,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Strong semantic match; case identifier is often stored as GUID/number."
+    },
+    {
+      "SourceColumn": "CaseNo",
+      "TargetColumn": "m360_primaryreferencenumber",
+      "Confidence": 0.8400000000000001,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Semantic match; \u0027CaseNo\u0027 refers to a reference number."
+    },
+    {
+      "SourceColumn": "Category",
+      "TargetColumn": "m360_category",
+      "Confidence": 0.8400000000000001,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Strong semantic match with expected attribute."
+    },
+    {
+      "SourceColumn": "ReferralDate",
+      "TargetColumn": "m360_referraldate",
+      "Confidence": 0.8400000000000001,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Strong semantic match with the date format."
+    },
+    {
+      "SourceColumn": "xMFID",
+      "TargetColumn": "m360_xmifid",
+      "Confidence": 0.8400000000000001,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good mapping for unique identifier."
+    },
+    {
+      "SourceColumn": "RegistrationDate",
+      "TargetColumn": "m360_created_on_date",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good business logic match; date represents when a case is created."
+    },
+    {
+      "SourceColumn": "SendingMission",
+      "TargetColumn": "m360_managing_mission",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good logical association; SendingMission relates to managing missions."
+    },
+    {
+      "SourceColumn": "SecondarySource",
+      "TargetColumn": "m360_secondary_source",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good logical mapping; secondary sources are relevant."
+    },
+    {
+      "SourceColumn": "SecondaryReferenceNo",
+      "TargetColumn": "m360_secondaryreferencenumber",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good business logic match; refers to a secondary reference."
+    },
+    {
+      "SourceColumn": "ReferralAgency",
+      "TargetColumn": "m360_referral_entity",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good match; both refer to agency information."
+    },
+    {
+      "SourceColumn": "ReferralEntity",
+      "TargetColumn": "m360_referralagencyid",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good mapping; entity refers to referral agency."
+    },
+    {
+      "SourceColumn": "Location",
+      "TargetColumn": "m360_caselocation",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good business logic match; directly related to location."
+    },
+    {
+      "SourceColumn": "LocationCountry",
+      "TargetColumn": "m360_caselocationcountryid",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good mapping; country information aligns with location."
+    },
+    {
+      "SourceColumn": "PromissoryNoteCategory",
+      "TargetColumn": "m360_promisory_note_category",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Business logic match; aligns with category types."
+    },
+    {
+      "SourceColumn": "FinalDestination",
+      "TargetColumn": "m360_final_destination",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Strong match to final destination attributes."
+    },
+    {
+      "SourceColumn": "EarliestTravelDate",
+      "TargetColumn": "m360_earliest_arrival_date",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good mapping as both refer to relevant travel dates."
+    },
+    {
+      "SourceColumn": "GlobalCaseStatus",
+      "TargetColumn": "m360_case_status",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good logic mapping as status indicators match."
+    },
+    {
+      "SourceColumn": "ChangeStatusReason",
+      "TargetColumn": "m360_change_status_reason",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good mapping of status reason to change event."
+    },
+    {
+      "SourceColumn": "ChangeStatusOtherReason",
+      "TargetColumn": "m360_change_status_other_reason",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Good mapping of additional status reasons."
+    },
+    {
+      "SourceColumn": "IsRevoke",
+      "TargetColumn": "m360_is_revoke",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Boolean field indicating the revocation."
+    },
+    {
+      "SourceColumn": "ValidFrom",
+      "TargetColumn": "m360_valid_from",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Excellent match for valid date indicators."
+    },
+    {
+      "SourceColumn": "ValidTo",
+      "TargetColumn": "m360_valid_to",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Excellent match for valid date indicators."
+    },
+    {
+      "SourceColumn": "CaseWorker",
+      "TargetColumn": "m360_case_worker",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Case worker corresponds directly to the worker attribute."
+    },
+    {
+      "SourceColumn": "IsUnaccompaniedMinor",
+      "TargetColumn": "m360_is_unaccompanied_minor",
+      "Confidence": 0.735,
+      "MatchType": "AI-Custom",
+      "Transformation": "",
+      "Rationale": "Direct mapping from logical attributes."
+    },
+    {
+      "SourceColumn": "LastDateModified",
+      "TargetColumn": "modifiedon",
+      "Confidence": 0.76,
+      "MatchType": "AI-System-ModifiedOn",
+      "Transformation": "",
+      "Rationale": "Strong match with last modification timestamp."
+    }
+  ],
+  "NeedsReview": [
+    {
+      "SourceColumn": "CreatedBy",
+      "TargetColumn": "createdby",
+      "Confidence": 0.57,
+      "MatchType": "AI-System-CreatedBy",
+      "Transformation": "",
+      "Rationale": "Determined by pattern; refers to the user who created the entry."
+    }
+  ],
   "UnresolvedSourceColumns": [
-    "MigrantCaseID",
-    "CaseGUID",
-    "CaseNo",
-    "RegistrationDate",
-    "SendingMission",
     "PrimarySource",
     "PrimaryRefNo",
     "DestinationCountry",
-    "Category",
-    "SecondarySource",
-    "SecondaryReferenceNo",
-    "ReferralDate",
-    "ReferralAgency",
-    "ReferralEntity",
-    "Location",
-    "LocationCountry",
     "BasedCity",
     "BasedCountry",
-    "PromissoryNoteCategory",
-    "FinalDestination",
-    "EarliestTravelDate",
     "LatestTravelDate",
-    "GlobalCaseStatus",
     "Remarks",
-    "ChangeStatusReason",
-    "ChangeStatusOtherReason",
-    "CreatedBy",
     "ManagingMission",
-    "LastDateModified",
-    "IsRevoke",
-    "ValidFrom",
-    "ValidTo",
-    "CaseWorker",
-    "IsUnaccompaniedMinor",
-    "xMFID",
     "FinalDestinationType",
     "ReferralAgencyContact",
     "trigger_timestamp",
@@ -2334,7 +2793,6 @@
     "rowguid"
   ],
   "UnusedTargetColumns": [
-    "createdby",
     "createdbyname",
     "createdbyyominame",
     "createdon",
@@ -2342,26 +2800,14 @@
     "createdonbehalfbyname",
     "createdonbehalfbyyominame",
     "importsequencenumber",
-    "m360_case_status",
     "m360_case_statusname",
-    "m360_case_worker",
-    "m360_caseid",
-    "m360_caselocation",
-    "m360_caselocationcountryid",
     "m360_caselocationcountryidname",
     "m360_casemembershipid",
     "m360_casemembershipidname",
-    "m360_category",
     "m360_categoryname",
-    "m360_change_status_other_reason",
-    "m360_change_status_reason",
     "m360_change_status_reasonname",
-    "m360_created_on_date",
-    "m360_earliest_arrival_date",
     "m360_external_case_type",
     "m360_external_case_typename",
-    "m360_externalcasenumber",
-    "m360_final_destination",
     "m360_final_destination_type",
     "m360_final_destination_typename",
     "m360_final_destinationname",
@@ -2370,45 +2816,31 @@
     "m360_internal_external_case",
     "m360_internal_external_casename",
     "m360_internalcasenumber",
-    "m360_is_revoke",
     "m360_is_revokename",
-    "m360_is_unaccompanied_minor",
     "m360_is_unaccompanied_minorname",
     "m360_last_date_modified",
-    "m360_managing_mission",
     "m360_managing_missionname",
     "m360_must_travel_by_date",
     "m360_name",
-    "m360_primaryreferencenumber",
     "m360_program",
     "m360_programname",
-    "m360_promisory_note_category",
     "m360_promisory_note_categoryname",
-    "m360_referral_entity",
     "m360_referral_entityname",
-    "m360_referralagencyid",
     "m360_referralagencyidname",
-    "m360_referraldate",
     "m360_reintegration_mission",
     "m360_reintegration_missionname",
     "m360_rsc",
     "m360_rsc_expedite",
     "m360_rsc_expeditename",
-    "m360_secondary_source",
     "m360_secondary_sourcename",
-    "m360_secondaryreferencenumber",
     "m360_start_case_status",
     "m360_start_travel_status",
     "m360_unhcrcasenumber",
     "m360_urgency",
     "m360_urgencyname",
-    "m360_valid_from",
-    "m360_valid_to",
-    "m360_xmifid",
     "modifiedby",
     "modifiedbyname",
     "modifiedbyyominame",
-    "modifiedon",
     "modifiedonbehalfby",
     "modifiedonbehalfbyname",
     "modifiedonbehalfbyyominame",
@@ -2429,7 +2861,7 @@
     "utcconversiontimezonecode",
     "versionnumber"
   ],
-  "GeneratedAtUtc": "2025-08-15T10:08:07.3012211Z",
+  "GeneratedAtUtc": "2025-08-15T10:51:29.4908368Z",
   "Weights": {
     "ExactName": 0.5,
     "CaseInsensitive": 0.45,

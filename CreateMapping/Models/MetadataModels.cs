@@ -15,7 +15,9 @@ public sealed record ColumnMetadata(
     bool IsRequired = false,
     IReadOnlyList<string>? OptionSetValues = null,
     bool IsSystemField = false,
-    SystemFieldType SystemFieldType = SystemFieldType.None
+    SystemFieldType SystemFieldType = SystemFieldType.None,
+    string? DisplayName = null,
+    string? AttributeTypeName = null
 );
 
 public enum SystemFieldType

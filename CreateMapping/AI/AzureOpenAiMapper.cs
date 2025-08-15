@@ -264,13 +264,13 @@ public sealed class AzureOpenAiMapper : IAiMapper
     {
         var sourceCols = source.Columns
             .Where(c => requestedSet.Count == 0 || requestedSet.Contains(c.Name))
-            .Select(c => new { c.Name, c.DataType, c.Length, c.Precision, c.Scale, c.IsIdentity, c.IsPrimaryId, c.IsPrimaryName, c.IsRequired });
+            .Select(c => new { c.Name, c.DataType, c.AttributeTypeName, c.Length, c.Precision, c.Scale, c.IsIdentity, c.IsPrimaryId, c.IsPrimaryName, c.IsRequired, c.DisplayName });
         var customTargetCols = target.Columns
             .Where(c => !c.IsSystemField)
-            .Select(c => new { c.Name, c.DataType, c.Length, c.IsRequired, c.IsPrimaryId, c.IsPrimaryName, IsSystemField = false, SystemFieldType = "None" });
+            .Select(c => new { c.Name, c.DataType, c.AttributeTypeName, c.Length, c.IsRequired, c.IsPrimaryId, c.IsPrimaryName, c.DisplayName, IsSystemField = false, SystemFieldType = "None" });
         var systemTargetCols = target.Columns
             .Where(c => c.IsSystemField)
-            .Select(c => new { c.Name, c.DataType, c.Length, c.IsRequired, c.IsPrimaryId, c.IsPrimaryName, IsSystemField = true, SystemFieldType = c.SystemFieldType.ToString() });
+            .Select(c => new { c.Name, c.DataType, c.AttributeTypeName, c.Length, c.IsRequired, c.IsPrimaryId, c.IsPrimaryName, c.DisplayName, IsSystemField = true, SystemFieldType = c.SystemFieldType.ToString() });
 
         return new {
             sourceTable = source.Name,
