@@ -7,17 +7,24 @@ Generates a proposed mapping between a SQL table schema (from a local CREATE TAB
 - .NET 9 SDK
 - Azure OpenAI (or compatible) access (only outbound HTTPS to your OpenAI endpoint is needed)
 
-## Configure
+## Configure (Minimal)
 
-Only the `Ai` section remains (legacy Dataverse/SQL connection settings were removed in the offline refactor). Provide Azure OpenAI (or compatible) settings via `appsettings.json`, **user secrets**, or environment variables. Required keys when AI is enabled:
+Only one settings group is used: `Ai` (for Azure OpenAI). There are no live SQL / Dataverse credentials anymore.
 
-- `Ai:Enabled` (true/false; default: true)
-- `Ai:Endpoint` (your Azure OpenAI resource endpoint)
-- `Ai:ApiKey` (store in user secrets, not in source)
-- `Ai:Deployment` (deployment/model name e.g. `gpt-4o-mini`)
-- Optional: `Ai:Temperature`, `Ai:RetryCount`, `Ai:LogRaw`
+Required when AI mapping is desired:
 
-If `Ai:Endpoint` or `Ai:ApiKey` is missing the tool automatically falls back to a no‑op mapper (produces header‑only CSV + unresolved columns).
+- `Ai:Endpoint`  Azure OpenAI resource endpoint
+- `Ai:ApiKey`    API key (set via user secrets / env var)
+- `Ai:Deployment` Model deployment (e.g. `gpt-4o-mini`)
+
+Optional:
+
+- `Ai:Enabled` (default true; set false to force no‑op)
+- `Ai:Temperature` (default 0.2)
+- `Ai:RetryCount` (default 2)
+- `Ai:LogRaw` (debug raw JSON)
+
+If endpoint or key is missing a no‑op mapper is used (outputs headers + unresolved list).
 
 Example (PowerShell syntax):
 
@@ -38,22 +45,26 @@ set Ai__LogRaw=false          # set true to log raw JSON responses (debug)
 
 ## Usage
 
-Offline-only syntax (arguments first, then required options):
+Syntax (arguments first, then options):
 
 ```bash
-dotnet run --project CreateMapping -- <sql-table-name> <dataverse-table-name> --sql-script <create-table.sql> --dataverse-file <dataverse.csv> [--output dir]
+dotnet run --project CreateMapping -- <sql-table> <dataverse-table> --sql-script <create-table.sql> --dataverse-file <metadata.csv> [--output dir]
 ```
 
 Arguments:
 
-- `sql-table-name`  Logical SQL table identifier (only used for naming & prompt context; schema part allowed).
-- `dataverse-table-name`  Dataverse logical table name to filter rows in the metadata CSV (or single table if CSV lacks table column).
+| Arg | Description |
+|-----|-------------|
+| `<sql-table>` | Logical SQL table name (schema prefix allowed; used for naming & AI context). |
+| `<dataverse-table>` | Dataverse logical table name present in the CSV (or arbitrary if single-table CSV). |
 
 Options:
 
-- `--sql-script` (required) Path to a `.sql` file containing exactly one `CREATE TABLE` statement for the source table.
-- `--dataverse-file` (required) Path to a Dataverse metadata CSV (exported e.g. via XrmToolBox). Must contain the target entity’s columns.
-- `--output` Directory for generated files (default: `output`).
+| Option | Required | Description |
+|--------|----------|-------------|
+| `--sql-script` | Yes | Path to a file with exactly one `CREATE TABLE` definition. |
+| `--dataverse-file` | Yes* | Path to Dataverse metadata CSV (*optional if `CM_DATAVERSE_FILE` env var or `Dataverse:File` configured). |
+| `--output` | No | Output directory (default `output`). |
 
 ### Example
 
@@ -144,7 +155,7 @@ $Env:Ai__LogRaw = "false"
 
 (In Bash, use `export` or the earlier `set` examples. Remember the double underscore `__` represents the `:` hierarchy separator.)
 
-Security note: DO NOT commit real credentials or API keys into `appsettings.json`. Use `dotnet user-secrets` locally (the project now has a `UserSecretsId`) and secure environment variables / Key Vault in CI/CD. The checked-in `appsettings.json` intentionally leaves `Dataverse:Password` and `Ai:ApiKey` blank.
+Security note: DO NOT commit real API keys. Use `dotnet user-secrets` locally and secure variables / Key Vault in CI/CD. The sample `appsettings.sample.json` shows placeholders only.
 
 ### User Secrets Quick Start (local only)
 
